@@ -101,6 +101,7 @@ function qa_db_table_definitions()
 			'created' => 'DATETIME NOT NULL',
 			'createip' => 'VARBINARY(16) NOT NULL', // INET6_ATON of IP address when created
 			'email' => 'VARCHAR(' . QA_DB_MAX_EMAIL_LENGTH . ') NOT NULL',
+			'user_type' => 'VARCHAR(80)',
 			'handle' => 'VARCHAR(' . QA_DB_MAX_HANDLE_LENGTH . ') NOT NULL', // username
 			'avatarblobid' => 'BIGINT UNSIGNED', // blobid of stored avatar
 			'avatarwidth' => 'SMALLINT UNSIGNED', // pixel width of stored avatar
