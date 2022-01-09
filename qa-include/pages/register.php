@@ -122,6 +122,12 @@ if (qa_clicked('doregister')) {
 
 				$userid = qa_create_new_user($inemail, $inpassword, $inhandle);
 
+				# START Metas Custom Usertype
+				require_once QA_INCLUDE_DIR.'qa-db-metas.php'; //make sure we have access to the functions we need.
+				qa_db_usermeta_set($userid, 'custom_usertype', 1);
+				# END Metas Custom Usertype
+
+
 				foreach ($userfields as $userfield)
 					qa_db_user_profile_set($userid, $userfield['title'], $inprofile[$userfield['fieldid']]);
 
