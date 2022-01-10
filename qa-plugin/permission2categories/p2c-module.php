@@ -7,7 +7,7 @@ class p2c_category_permission
 	 */
 	var $category_metakey = 'p2c_permission_level';
 	var $category_usertype_metakey = 'custom_user_type';
-	var $user_usertype_metakey = 'custom_user_type';
+	var $user_usertype_metakey = 'custom_usertype';
 	
 	/**
 	 * @var array - Cache for the category permission levels
@@ -21,6 +21,7 @@ class p2c_category_permission
 	{
 		$this->get_category_permit_levels();
 		$this->get_category_permit_jenis();
+		$this->get_custom_user_type();
 	}
 	
 	
@@ -100,12 +101,13 @@ class p2c_category_permission
 	function get_custom_user_type() 
 	{		
 		$usertype = qa_db_read_all_assoc(qa_db_query_sub('
-				SELECT categoryid, content 
+				SELECT userid, content 
 				FROM ^usermetas 
 				WHERE title=\''. $this->user_usertype_metakey .'\''));
-
+		
 		foreach ($usertype as $value)
 			$this->user_type[$value['userid']] = $value['content'];
+
 		return $this->user_type;
 	}
 	
@@ -157,20 +159,10 @@ class p2c_category_permission
 	{
 		$permit_level = $this->category_permit_level($categoryid);
 		$permit_jenis = $this->category_permit_jenis($categoryid);
-		$user_type = $this->category_permit_jenis(qa_get_logged_in_userid());
-
-		echo "<pre>" , print_r($permit_level);	
-		echo "<pre>" , print_r($permit_jenis);
-		echo "<pre>" , print_r($user_type);die();	
-
-		// echo var_dump(json_decode($permit_jenis));
-
-		// foreach($permit_jenis as $pj) {
-		// 	echo qa_get_logged_in_user_field('jenis') , " => " , $pj , "<br/>";
-		// }
+		$user_type = $this->user_type(qa_get_logged_in_userid());
 		
 		if ( qa_get_logged_in_level() >= $permit_level || $permit_level == 0 ){
-				if ( in_array(qa_get_logged_in_user_field('jenis'), $permit_jenis) || $permit_jenis == array(0) )
+				if ( in_array($user_type, $permit_jenis) || $permit_jenis == array(0) )
 				return true;
 			else
 				return false;
