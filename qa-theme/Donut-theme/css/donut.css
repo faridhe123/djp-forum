@@ -284,7 +284,7 @@ header#nav-header {
   box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.2);
 }
 .navbar a {
-  color: #000;
+  color: #261f1f;
   opacity: 0.5;
   font-weight: bold;
   -webkit-transition: all 200ms ease-out;
@@ -527,16 +527,16 @@ header#nav-header {
   .navbar-nav > li > a {
     padding: 10px 5px;
     line-height: 30px;
-    background-color: gray;
+    background-color: #f9f9f9;
     border-radius: 10%;
-    color: white;
+    color: #005cac;
   }
   /* .navbar-nav > li > a, */
   .navbar-nav > li > a:hover,
   .navbar-nav > li > a:active,
   .navbar-nav > li > a:focus {
-    /* background-color: #fff; */
-    color:#000;
+     background-color: #fbfbfb; 
+    color:#f0ad4e;
   }
 }
 /* small caret at the dropdown menu */
@@ -598,9 +598,9 @@ header#nav-header {
 .donut-masthead {
   position: relative;
   margin-bottom: 15px;
-  color: white;
-  background:#707070;
-  border-bottom: 5px solid #CCC;
+  color: #212c5f;
+  background:#f0ad4e;
+  border-bottom: 5px solid #f0ad4e;
 }
 .donut-masthead .page-title {
   /* border-bottom: 1px solid #e2e2e2; */
@@ -4055,6 +4055,5 @@ a.qa-browse-cat-link:visited {
   padding: 5px;
   margin: 10px 0;
 }
-
 
 
