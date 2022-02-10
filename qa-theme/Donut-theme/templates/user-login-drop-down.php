@@ -64,7 +64,8 @@
                 </li>
             <?php endif ?>
             <?php if (!defined( 'QA_WORDPRESS_INTEGRATE_PATH' )): ?>
-                <form role="form" action="<?php echo $this->content['navigation']['user']['login']['url']; ?>"
+				<!--
+			  <form role="form" action="<?php echo $this->content['navigation']['user']['login']['url']; ?>"
                       method="post">
                     <li>
                         <label>
@@ -93,15 +94,14 @@
                     </li>
                     <li>
                         <button type="submit" value="" id="qa-login" name="dologin" class="btn btn-primary btn-block">
-                            <?php echo $this->content['navigation']['user']['login']['label']; ?>
+                            <?php //echo $this->content['navigation']['user']['login']['label']; ?>
                         </button>
                     </li>
-					<!--
                     <li class="forgot-password">
-                        <a href="<?php //echo qa_path_html( 'forgot' ); ?>"><?php //echo qa_lang_html( 'users/forgot_link' ) ?></a>
+                        <a href="<?php echo qa_path_html( 'forgot' ); ?>"><?php //echo qa_lang_html( 'users/forgot_link' ) ?></a>
                     </li>
-					-->
                 </form>
+				-->
             <?php endif ?>
 			
 

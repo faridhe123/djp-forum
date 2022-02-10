@@ -33,7 +33,7 @@ class qa_open_login {
     var $directory;
     var $urltoroot;
     var $provider;
-    var $urlLogout = "http://localhost:8081/logout";
+   
     
     function load_module($directory, $urltoroot, $type, $provider) {
         $this->directory = $directory;
@@ -128,7 +128,7 @@ class qa_open_login {
             }
         } catch (Exception $e) {
             error_log($e->getMessage());
-
+	
             // not really interested in the error message - for now
             // however, in case we have errors 6 or 7, then we have to call logout to clean everything up
             if ($e->getCode() == 6 || $e->getCode() == 7) {

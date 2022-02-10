@@ -80,7 +80,7 @@ class DjpConnect extends OAuth2 {
      */
     protected $accessTokenUrl = 'http://10.254.208.134:8081/oauth/token';
     protected $checkTokenUrl = "http://10.254.208.134:8081/oauth/check_token";
-    protected $iamUrl = "http://10.244.66.37/api";
+    protected $iamUrl = "http://10.244.66.37/iam/api";
 
     /**
      * {@inheritdoc}
@@ -116,7 +116,7 @@ class DjpConnect extends OAuth2 {
     public function getUserProfile() {
         var_dump("getUserProfile");
         $response = $this->getUserData();
-
+	
 
 
 //        $response = $this->apiRequest('oauth2/v3/userinfo');
@@ -124,8 +124,8 @@ class DjpConnect extends OAuth2 {
         $data = new Data\Collection($response);
 
         $profile = json_decode($data->get('scalar'), TRUE);
-//        var_dump($profile['pegawai']['nama']);
-
+        //var_dump($profile['pegawai']['nama']);
+		//die;
         if (!$data->exists('scalar')) {
             throw new UnexpectedApiResponseException('Provider API returned an unexpected response.');
         }
@@ -141,24 +141,24 @@ class DjpConnect extends OAuth2 {
 //        Administrator		= 100
 //        Super Administrator	= 120
         
-        $role =$profile['pegawai']['jabatan'];
-        $level = null;
-        switch ($role) {
-            case "Pelaksana":
-                $level=100;
-                break;
-            case "Kasubdit":
-                
-                break;
-            case "Kasi":
-                
-                break;
-            default:
-                echo "Your favorite color is neither red, blue, nor green!";
-        }
+        //$role =$profile['pegawai']['jabatan'];
+        //$level = null;
+        //switch ($role) {
+            //case "Pelaksana":
+              //  $level=100;
+             //   break;
+            //case "Kasubdit":
+           //     
+          //      break;
+           // case "Kasi":
+          //      
+         //       break;
+        //    default:
+        //        echo "Your favorite color is neither red, blue, nor green!";
+        //}
         
-        var_dump($profile);
-        var_dump($role);
+       // var_dump($profile);
+        //var_dump($role);
        
         $userProfile->identifier = $profile['pegawai']['nip9'];
         $userProfile->firstName = $profile['pegawai']['nama'];
@@ -168,7 +168,7 @@ class DjpConnect extends OAuth2 {
 //        $userProfile->profileURL = $data->get('profile');
         $userProfile->gender = $data->get('gender');
         $userProfile->language = $data->get('locale');
-        $userProfile->email = $data->get('email');
+        $userProfile->email = $data->get('email');	
 
         $userProfile->emailVerified = ($data->get('email_verified') === true || $data->get('email_verified') === 1) ? $userProfile->email : '';
 
@@ -182,14 +182,12 @@ class DjpConnect extends OAuth2 {
     protected function getUserData() {
 
         $urlGetUser = $this->iamUrl . "/users/" . $this->getStoredData('id_user');
-        var_dump("urlGetUser", $urlGetUser);
-
         $response = $this->httpClient->request(
                 $urlGetUser, $this->iamMethod, $this->iamParameter, $this->iamRequestHeader
         );
 
         $this->validateApiResponse('Unable to exchange code for API access token');
-
+		//die;
         return $response;
     }
 
@@ -252,8 +250,8 @@ class DjpConnect extends OAuth2 {
     }
     
     function logout() {
-          var_dump("kucing");
-          die;
+          //var_dump("kucing");
+          //die;
            $response = $this->httpClient->request(
                 $urlGetUser, $this->logoutMethod, $this->logoutParameter, $this->iamRequestHeader
         );

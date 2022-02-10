@@ -572,10 +572,6 @@ abstract class OAuth2 extends AbstractAdapter implements AdapterInterface {
         $data = (new Data\Parser())->parse($response);
 
         $collection = new Data\Collection($data);
-//
-//        var_dump("collection", $collection);
-//        var_dump("authorities", $collection->get('authorities'));
-//
 
         if (!$collection->exists('user_name')) {
             throw new InvalidAccessTokenException(
@@ -587,15 +583,29 @@ abstract class OAuth2 extends AbstractAdapter implements AdapterInterface {
         $token = $collection->get('authorities')[0];
         $word = "ROLE_";
 
-        if (strpos($token, $word) !== false) {
-            $iamToken = $collection->get('authorities')[1];
-        } else {
- 
-            $iamToken = $token;
+ //       if (strpos($token, $word) !== false) {
+//            $iamToken = $collection->get('authorities')[1];
+//        } else {
+// 
+//            $iamToken = $token;
+//        }
+		//baru amri
+		$findtoken= $collection->get('authorities');
+		
+		for ($index = 0; $index < sizeof($findtoken); $index++) {
+
+			if (strpos($findtoken[$index],$word) === false) {
+			
+				$iamToken = $findtoken[$index];
+				var_dump($iamToken);
+				var_dump("dasd");
+				break;
+			
+			}
         }
+		
         $this->storeData('id_user', $collection->get('user_name'));
         $this->storeData('iamToken', $iamToken);
-        
         $this->deleteStoredData('authorization_state');
 
         $this->initialize();

@@ -115,16 +115,19 @@ class Hybridauth
     * @throws UnexpectedValueException
     */
     public function getAdapter($name)
-    {
+    {	
+		
         $config = $this->getProviderConfig($name);
 
         $adapter = isset($config['adapter']) ? $config['adapter'] : sprintf('Hybridauth\\Provider\\%s', $name);
-
         if (!class_exists($adapter)) {
+
             $adapter = null;
             $fs = new \FilesystemIterator(__DIR__ . '/Provider/');
             /** @var \SplFileInfo $file */
+			
             foreach ($fs as $file) {
+				
                 if (!$file->isDir()) {
                     $provider = strtok($file->getFilename(), '.');
                     if ($name === mb_strtolower($provider)) {
@@ -134,10 +137,11 @@ class Hybridauth
                 }
             }
             if ($adapter === null) {
+				
                 throw new InvalidArgumentException('Unknown Provider.');
             }
         }
-
+		
         return new $adapter($config, $this->httpClient, $this->storage, $this->logger);
     }
 

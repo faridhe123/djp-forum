@@ -604,6 +604,8 @@ header#nav-header {
 }
 .donut-masthead .page-title {
   /* border-bottom: 1px solid #e2e2e2; */
+    display: block;
+  word-wrap: break-word;
   padding: 15px 40px 15px 0 ;
 }
 /* page title */
@@ -3030,6 +3032,8 @@ header#nav-header {
 .qa-q-item-title {
   color: #000;
   font-size: 16px;
+  display: block;
+  word-wrap: break-word;
 }
 .qa-q-item-title a {
   font-size: 18px;
