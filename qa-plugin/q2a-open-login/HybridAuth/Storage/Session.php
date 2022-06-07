@@ -54,7 +54,6 @@ class Session implements StorageInterface
     public function get($key)
     {
         $key = $this->keyPrefix . strtolower($key);
-
         if (isset($_SESSION[$this->storeNamespace], $_SESSION[$this->storeNamespace][$key])) {
             return $_SESSION[$this->storeNamespace][$key];
         }
@@ -102,7 +101,7 @@ class Session implements StorageInterface
     public function deleteMatch($key)
     {
         $key = $this->keyPrefix . strtolower($key);
-
+		
         if (isset($_SESSION[$this->storeNamespace]) && count($_SESSION[$this->storeNamespace])) {
             $tmp = $_SESSION[$this->storeNamespace];
 
@@ -114,5 +113,6 @@ class Session implements StorageInterface
 
             $_SESSION[$this->storeNamespace] = $tmp;
         }
+		
     }
 }

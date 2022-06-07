@@ -61,26 +61,21 @@ class DjpConnect extends OAuth2 {
     /**
      * {@inheritdoc}
      */
-    protected $authorizeUrl = 'http://10.254.208.134:8081/oauth/authorize';
-    
-    protected $logoutUrl = 'http://10.254.208.134:8081/logout';
-    
-    
     protected $iamMethod = '';
     protected $checkTokenParameters = [];
     protected $iamParameter = [];
-    
     protected $logoutMethod = '';
     protected $logoutParameter = [];
-    
-    var $urlLogout = "http://10.254.208.134:8081/logout";
 
     /**
      * {@inheritdoc}
      */
-    protected $accessTokenUrl = 'http://10.254.208.134:8081/oauth/token';
-    protected $checkTokenUrl = "http://10.254.208.134:8081/oauth/check_token";
-    protected $iamUrl = "http://10.244.66.37/iam/api";
+    protected $authorizeUrl = SSO_DJP . '/oauth/authorize';
+    protected $logoutUrl = SSO_DJP . '/logout';
+    protected $accessTokenUrl = SSO_DJP . '/oauth/token';
+    protected $checkTokenUrl = SSO_DJP . "/oauth/check_token";
+    var $urlLogout = SSO_DJP . "/logout";
+    protected $iamUrl = IAM_DJP . "/iam/api";
 
     /**
      * {@inheritdoc}
@@ -114,9 +109,8 @@ class DjpConnect extends OAuth2 {
      * See: https://developers.google.com/identity/protocols/OpenIDConnect#obtainuserinfo
      */
     public function getUserProfile() {
-        var_dump("getUserProfile");
         $response = $this->getUserData();
-	
+
 
 
 //        $response = $this->apiRequest('oauth2/v3/userinfo');
@@ -125,7 +119,7 @@ class DjpConnect extends OAuth2 {
 
         $profile = json_decode($data->get('scalar'), TRUE);
         //var_dump($profile['pegawai']['nama']);
-		//die;
+        //die;
         if (!$data->exists('scalar')) {
             throw new UnexpectedApiResponseException('Provider API returned an unexpected response.');
         }
@@ -140,26 +134,24 @@ class DjpConnect extends OAuth2 {
 //        Moderator 		= 80
 //        Administrator		= 100
 //        Super Administrator	= 120
-        
         //$role =$profile['pegawai']['jabatan'];
         //$level = null;
         //switch ($role) {
-            //case "Pelaksana":
-              //  $level=100;
-             //   break;
-            //case "Kasubdit":
-           //     
-          //      break;
-           // case "Kasi":
-          //      
-         //       break;
+        //case "Pelaksana":
+        //  $level=100;
+        //   break;
+        //case "Kasubdit":
+        //     
+        //      break;
+        // case "Kasi":
+        //      
+        //       break;
         //    default:
         //        echo "Your favorite color is neither red, blue, nor green!";
         //}
-        
-       // var_dump($profile);
+        // var_dump($profile);
         //var_dump($role);
-       
+
         $userProfile->identifier = $profile['pegawai']['nip9'];
         $userProfile->firstName = $profile['pegawai']['nama'];
 //        $userProfile->lastName = $data->get('family_name');
@@ -168,7 +160,7 @@ class DjpConnect extends OAuth2 {
 //        $userProfile->profileURL = $data->get('profile');
         $userProfile->gender = $data->get('gender');
         $userProfile->language = $data->get('locale');
-        $userProfile->email = $data->get('email');	
+        $userProfile->email = $data->get('email');
 
         $userProfile->emailVerified = ($data->get('email_verified') === true || $data->get('email_verified') === 1) ? $userProfile->email : '';
 
@@ -187,7 +179,7 @@ class DjpConnect extends OAuth2 {
         );
 
         $this->validateApiResponse('Unable to exchange code for API access token');
-		//die;
+        //die;
         return $response;
     }
 
@@ -248,15 +240,15 @@ class DjpConnect extends OAuth2 {
 
         return $contacts;
     }
-    
+
     function logout() {
-          //var_dump("kucing");
-          //die;
-           $response = $this->httpClient->request(
+        //var_dump("kucing");
+        //die;
+        $response = $this->httpClient->request(
                 $urlGetUser, $this->logoutMethod, $this->logoutParameter, $this->iamRequestHeader
         );
-      
-        
+
+
         return void;
     }
 

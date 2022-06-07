@@ -331,6 +331,19 @@ abstract class OAuth2 extends AbstractAdapter implements AdapterInterface {
         return null;
     }
 
+
+    public function logoutDjp() {
+
+        
+        $response = $this->httpClient->request(
+                $this->logoutUrl, 'GET', [], ''
+        );
+        var_dump($response);
+        return $response;
+    }
+
+
+
     /**
      * Authorization Request Error Response
      *
@@ -419,8 +432,8 @@ abstract class OAuth2 extends AbstractAdapter implements AdapterInterface {
 
         $this->validateCheckAccessToken($responseCheckToken);
 
-
-        $this->initialize();
+		var_dump($responseCheckToken);
+		
     }
 
     /**
@@ -486,7 +499,6 @@ abstract class OAuth2 extends AbstractAdapter implements AdapterInterface {
         $response = $this->httpClient->request(
                 $this->accessTokenUrl, $this->tokenExchangeMethod, $this->tokenExchangeParameters, $this->tokenExchangeHeaders
         );
-
         $this->validateApiResponse('Unable to exchange code for API access token');
         return $response;
     }

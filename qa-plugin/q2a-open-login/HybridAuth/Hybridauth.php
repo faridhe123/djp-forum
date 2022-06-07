@@ -105,6 +105,15 @@ class Hybridauth
         return $adapter;
     }
 
+
+    public function authenticateLogout($name) {
+        $adapter = $this->getAdapter($name);
+        $adapter->logoutDjp();
+    
+        
+        return $adapter;
+    }
+
     /**
     * Returns a new instance of a provider's adapter by name
     *

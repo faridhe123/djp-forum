@@ -157,30 +157,30 @@ class qa_open_login {
 
         // prepare the configuration of HybridAuth
         $config = $this->getConfig($loginCallback);
-        
       
 
         try {
             // try to logout
+
             $hybridauth = new Hybridauth\Hybridauth($config);
 
             if ($hybridauth->isConnectedWith($this->provider)) {
+
+                $code = $hybridauth->authenticateLogout(($this->provider));
+      
                 $adapter = $hybridauth->getAdapter($this->provider);
-                $adapter->disconnect();
-                
+                $adapter->disconnect();	
+               
                 // window.open('https://localhost:8081/logout'); 
-                
-                
-                
                 //'Location: https://www.google.com'
-                  
-                  
-//                  $response = $this->httpClient->request(
+//               $response = $this->httpClient->request(
 //                $urlGetUser, $this->iamMethod, $this->iamParameter, $this->iamRequestHeader
 //        );
      
             }
         } catch (Exception $e) {
+        var_dump("12");die;
+
             // not really interested in the error message - for now
             // however, in case we have errors 6 or 7, then we have to call logout to clean everything up
             if ($e->getCode() == 6 || $e->getCode() == 7) {

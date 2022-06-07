@@ -344,8 +344,10 @@ abstract class AbstractAdapter implements AdapterInterface
      */
     protected function validateApiResponse($error = '')
     {
-      
         $error .= !empty($error) ? '. ' : '';
+
+         var_dump($this->httpClient->getResponseHttpCode());
+
 
         if ($this->httpClient->getResponseClientError()) {
             throw new HttpClientFailureException(

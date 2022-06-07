@@ -777,7 +777,7 @@ $qa_content['notices'][] = qa_notice_form('welcome', qa_opt('notice_welcome'));
 
 $qa_content['script_rel'] = array('qa-content/jquery-3.5.1.min.js');
 $qa_content['script_rel'][] = 'qa-content/qa-global.js?' . QA_VERSION;
-$qa_content['script_rel'][] = 'qa-content/djp-script.js';
+// $qa_content['script_rel'][] = 'qa-content/djp-script.js';
 
 
 if ($voting)

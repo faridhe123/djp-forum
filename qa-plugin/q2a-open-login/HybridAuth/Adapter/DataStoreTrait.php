@@ -70,6 +70,9 @@ trait DataStoreTrait
     protected function clearStoredData()
     {
         //amri ini
+        // var_dump($this->providerId);
+        // var_dump($this->getStorage());
+
         $this->getStorage()->deleteMatch($this->providerId.'.');
     }
 }
