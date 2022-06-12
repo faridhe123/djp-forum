@@ -200,7 +200,7 @@ img {
 }
 /* Header */
 header#top-header {
-  background-color: #337ab7;
+  background-color: #02275d;
   color: #fff;
   position: relative;
   min-height: 5px;
@@ -243,7 +243,7 @@ header#nav-header {
   }
 }
 .navbar {
-  background-color: #fff;
+  background: linear-gradient(180deg, #f4f4f4 0%, #ffffff 76%, #e0e0e0 100%);
   margin-bottom: 0;
   z-index: 1010;
   -webkit-transition: top 0.6s, opacity 0.6s, background 0.3s;
@@ -260,7 +260,7 @@ header#nav-header {
   box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.2);
 }
 .navbar a {
-  color: #000;
+  color: #261f1f;
   opacity: 0.5;
   font-weight: bold;
   -webkit-transition: all 200ms ease-out;
@@ -381,12 +381,12 @@ header#nav-header {
 }
 #login-dropdown-menu li .login-or {
   position: relative;
-  font-size: 18px;
+  font-size: 13px;
   color: #aaa;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 #login-dropdown-menu li .span-or {
   display: block;
@@ -427,7 +427,7 @@ header#nav-header {
 .nav.navbar-nav.navbar-right.user-nav,
 .nav.navbar-nav.navbar-right.notf-bubble {
   margin: 0;
-  padding: 15px 0;
+  padding: 10px 0;
   display: inline-block;
   float: right;
 }
@@ -495,16 +495,23 @@ header#nav-header {
 @media (min-width: 768px) {
   .navbar-nav > li {
     margin-left: 15px;
+    margin-top: 10px;
+  }
+  .navbar-nav > li.dropdown {
+    margin-top: 0;
   }
   .navbar-nav > li > a {
-    padding: 20px 0;
+    padding: 10px 5px;
     line-height: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10%;
+    color: #005cac;
   }
-  .navbar-nav > li > a,
   .navbar-nav > li > a:hover,
   .navbar-nav > li > a:active,
   .navbar-nav > li > a:focus {
-    background-color: #fff;
+    background-color: #fbfbfb;
+    color: #f0ad4e;
   }
 }
 /* small caret at the dropdown menu */
@@ -565,22 +572,29 @@ header#nav-header {
 /* top portion of the body */
 .donut-masthead {
   position: relative;
-  margin-bottom: 20px;
-  color: #337ab7;
+  margin-bottom: 15px;
+  color: #212c5f;
+  background: #f0ad4e;
+  border-bottom: 5px solid #f0ad4e;
 }
 .donut-masthead .page-title {
-  border-bottom: 1px solid #e2e2e2;
-  padding: 25px 40px 25px 0 ;
+  display: block;
+  word-wrap: break-word;
+  padding: 15px 40px 15px 0 ;
 }
 /* page title */
 .page-title {
   position: relative;
   padding: 25px 0;
 }
+.page-title a {
+  color: white !important;
+}
 .page-title h1 {
   clear: none;
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
+  width: 500px;
 }
 /*Styling for the Onsite Noification*/
 #osnbox {
@@ -1504,15 +1518,15 @@ header#nav-header {
 }
 .donut-footer {
   padding: 25px 0;
-  background-color: #333333;
+  background-color: #02275d;
 }
 .qa-footer {
-  color: #777777;
+  color: white;
   font-size: 16px;
   line-height: 1.42857143;
 }
 .qa-footer a {
-  color: #777777;
+  color: white;
 }
 .qa-footer a:visited {
   color: #777777;
@@ -1520,7 +1534,7 @@ header#nav-header {
 .qa-footer a:hover,
 .qa-footer a:active,
 .qa-footer a:focus {
-  color: #c4c4c4;
+  color: white;
   text-decoration: none;
 }
 .qa-footer-left {
@@ -1740,6 +1754,7 @@ header#nav-header {
   margin-top: 10px;
   position: relative;
   overflow: hidden;
+  padding-bottom: 5px;
 }
 .search-dropdown .input-group,
 .side-search-bar .input-group,
@@ -2613,6 +2628,7 @@ header#nav-header {
   position: absolute;
   right: 0;
   bottom: 5px;
+  margin-bottom: 40px;
 }
 .qa-favoriting .qa-waiting {
   font-size: 20px;
@@ -2988,6 +3004,8 @@ header#nav-header {
 .qa-q-item-title {
   color: #000;
   font-size: 16px;
+  display: block;
+  word-wrap: break-word;
 }
 .qa-q-item-title a {
   font-size: 18px;
@@ -4013,3 +4031,21 @@ a.qa-browse-cat-link:visited {
   padding: 5px;
   margin: 10px 0;
 }
+/* CUSTOM START */
+.djpconnect {
+  background-color: #02275d !important;
+  opacity: 1 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-align: center;
+  border-style: none!important;
+}
+#qa-login {
+  background-color: #FFCA19;
+  /* opacity:1 ; */
+  color: black ;
+  font-weight: 600 ;
+  text-align: center;
+  border-style: none;
+}
+/* CUSTOM END */
