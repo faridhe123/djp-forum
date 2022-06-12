@@ -20,7 +20,7 @@
 
                         //support for open login plugin
                         $icon = '';
-                        preg_match( '/class="([^"]+)"/', @$custom['label'], $class );
+//                        preg_match( '/class="([^"]+)"/', @$custom['label'], $class );
 
                         if ( $k == 'facebook' )
                             $icon = 'class="' . @$class[1] . ' fa fa-facebook"';
