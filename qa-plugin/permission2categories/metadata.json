@@ -7,5 +7,6 @@
 	"author_uri": "http://www.question2answer.org",
 	"license": "GPLv2",
 	"min_q2a": "1.5",
-	"load_order": "after_db_init"
+	/*comment baris bawah ini jika setelah install plugin, kalau tidak fungsi init tidak bisa jalan*/
+//	"load_order": "after_db_init"
 }

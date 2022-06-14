@@ -4,7 +4,7 @@
  * This is an override of the core function 'qa_page_q_post_rules'.
  * Adds another permissions check to see if the user has the right permit level for the category the question is in. 
  * If not the question will be blocked.
- * 
+ *
  * @see qa_page_q_post_rules() in core files
  */
 function qa_page_q_post_rules($post, $parentpost=null, $siblingposts=null, $childposts=null)
@@ -32,7 +32,7 @@ function qa_page_q_post_rules($post, $parentpost=null, $siblingposts=null, $chil
  */
 function qa_create_new_user($email, $password, $handle, $level = QA_USER_LEVEL_BASIC, $confirmed = false)
 {
-	echo "AAAA";die();
+//	echo "AAAA";die();
 	require_once QA_INCLUDE_DIR . 'db/users.php';
 	require_once QA_INCLUDE_DIR . 'db/points.php';
 	require_once QA_INCLUDE_DIR . 'app/options.php';

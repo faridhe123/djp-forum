@@ -18,62 +18,41 @@ class qa_html_theme_layer extends qa_html_theme_base
 				QA_USER_LEVEL_SUPER 	=> 'Super Admin'
 				);
 
+        $permitjenis = array(
+            1 	=> 'WP',
+            2 	=> 'PEGAWAI',
+            3	=> 'AR'
+        );
+
 		if( $this->request == 'admin/categories' &&  qa_get('edit') >= 1 ) {
-			$p2c = qa_load_module('process', 'Permissions2Categories');
-			$categoryvalue = $permitoptions[$p2c->category_permit_level(qa_get('edit'))];
-			// echo $categoryvalue;die();
+            $p2c = qa_load_module('process', 'Permissions2Categories');
+            $categoryvalue = $permitoptions[$p2c->category_permit_level(qa_get('edit'))];
+            $categoryuser = $p2c->category_permit_jenis(qa_get('edit'));
 
-			
-			$this->content['form']['fields'][] = array(
-					'tags' => 'NAME="p2c_permit_level" ID="p2c_form"',
-					'label' => 'Select permission level requirement',
-					'type' => 'select',
-					'options' => $permitoptions,
-					'value' => $categoryvalue
-					);
+            $this->content['form']['fields'][] = array(
+                'tags' => 'NAME="p2c_permit_level" ID="p2c_form"',
+                'label' => 'Select permission level requirement',
+                'type' => 'select',
+                'options' => $permitoptions,
+                'value' => $categoryvalue,
+            );
 
-			$this->content['form']['fields'][] = array(
-				'id' => 'user_type',
-				'label' => 'Pilih User Type (Kosongkan jika tidak ada batasan)',
-				'type' => 'static',
-				);
-	
+            $this->content['form']['fields'][] = array(
+                'id' => 'user_type',
+                'label' => 'Pilih User Type (Kosongkan jika tidak ada batasan)',
+                'type' => 'static',
+            );
 
-			$this->content['form']['fields'][] = array(
-					'tags' => 'NAME="user_type[]" ID="custom_level" VALUE="1"',
-					'label' => 'WP',
-					'type' => 'checkbox',
-					'value' => 0
-					);
-			$this->content['form']['fields'][] = array(
-					'tags' => 'NAME="user_type[]" ID="custom_level"  VALUE="2"',
-					'label' => 'Pegawai',
-					'type' => 'checkbox',
-					'value' => 0
-					);
-			$this->content['form']['fields'][] = array(
-					'tags' => 'NAME="user_type[]" ID="custom_level"  VALUE="3"',
-					'label' => 'AR',
-					'type' => 'checkbox',
-					'value' => 0
-					);
+            foreach ($permitjenis as $key => $value) {
+                $this->content['form']['fields'][] = array(
+                    'tags' => 'NAME="user_type[]" ID="custom_level" VALUE="' . $key . '"' . (in_array($key, $categoryuser) ? 'checked' : ''),
+                    'label' => $value,
+                    'type' => 'checkbox',
+                    'value' => 0,
+                );
+            }
+        }
 
-			// $this->content['form']['fields'][] = array(
-			// 		'tags' => 'NAME="user_type[]" ID="custom_level"  VALUE="4"',
-			// 		'label' => 'Kepala Seksi',
-			// 		'type' => 'checkbox',
-			// 		'value' => 0
-			// 		);
-
-			// $this->content['form']['fields'][] = array(
-			// 		'tags' => 'NAME="user_type[]" ID="custom_level"  VALUE="5"',
-			// 		'label' => 'Kepala Kantor',
-			// 		'type' => 'checkbox',
-			// 		'value' => 0
-			// 		);
-			// echo "<pre>" , print_r($this->content['form']);die();
-		}
-	
 		qa_html_theme_base::doctype();
 	}
 	

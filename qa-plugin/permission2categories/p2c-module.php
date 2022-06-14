@@ -35,13 +35,16 @@ class p2c_category_permission
 			$this->edit_permit_level(qa_post_text('edit'), $this->category_metakey, qa_post_text('p2c_permit_level'));
 		}
 
-		$user_type = qa_post_text('user_type');
-		if ( qa_clicked('dosavecategory') && isset($user_type) && !qa_clicked('docancel') ){
-			foreach($_POST['user_type'] as $type) {
-				# Filter untuk security
-				$user_type[] = preg_replace('/\r\n?/', "\n", trim(qa_gpc_to_string($type)));
-			}
-			$this->edit_permit_user_type(qa_post_text('edit'), $this->category_usertype_metakey, json_encode($user_type));
+//		$user_type = qa_post_text('user_type');
+		if ( qa_clicked('dosavecategory') && !qa_clicked('docancel') ){
+//			foreach($_POST['user_type'] as $type) {
+//				# Filter untuk security
+//				$user_type[] = qa_post_text($type);
+//			}var_dump($user_type);
+            if (isset($_POST['user_type']) )
+                $this->edit_permit_user_type(qa_post_text('edit'), $this->category_usertype_metakey, json_encode($_POST['user_type']));
+            else
+                $this->edit_permit_user_type(qa_post_text('edit'), $this->category_usertype_metakey, json_encode(array()));
 		}
 	}
 	
@@ -64,7 +67,7 @@ class p2c_category_permission
 	function edit_permit_user_type($categoryid, $key, $value)
 	{
 		require_once QA_INCLUDE_DIR.'qa-db-metas.php'; //make sure we have access to the functions we need.
-		
+
 		qa_db_categorymeta_set($categoryid, $key, $value);
 	}
 
