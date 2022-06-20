@@ -72,6 +72,10 @@ switch (qa_request_part(2)) {
 		$qa_content = include QA_INCLUDE_DIR . 'pages/user-answers.php';
 		break;
 
+    case 'jenis':
+        $qa_content = include QA_INCLUDE_DIR . 'pages/jenis-user-djp.php';
+        break;
+
 	case null:
 		$qa_content = include QA_INCLUDE_DIR . 'pages/user-profile.php';
 		break;

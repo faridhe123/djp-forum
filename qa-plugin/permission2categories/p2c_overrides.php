@@ -78,3 +78,32 @@ function qa_create_new_user($email, $password, $handle, $level = QA_USER_LEVEL_B
 
 	return $userid;
 }
+
+function qa_user_level_string($level,$jenis=false)
+{
+    if(!$jenis) {
+        if ($level >= QA_USER_LEVEL_SUPER)
+            $string = 'users/level_super';
+        elseif ($level >= QA_USER_LEVEL_ADMIN)
+            $string = 'users/level_admin';
+        elseif ($level >= QA_USER_LEVEL_MODERATOR)
+            $string = 'users/level_moderator';
+        elseif ($level >= QA_USER_LEVEL_EDITOR)
+            $string = 'users/level_editor';
+        elseif ($level >= QA_USER_LEVEL_EXPERT)
+            $string = 'users/level_expert';
+        elseif ($level >= QA_USER_LEVEL_APPROVED)
+            $string = 'users/approved_user';
+        else
+            $string = 'users/registered_user';
+    } else {
+        if ($level == QA_JENIS_USER_WP)
+            $string = 'users/jenis_wp';
+        elseif ($level == QA_JENIS_USER_PEGAWAI)
+            $string = 'users/jenis_pegawai';
+        elseif ($level == QA_JENIS_USER_AR)
+            $string = 'users/jenis_ar';
+    }
+
+    return qa_lang($string);
+}
