@@ -138,7 +138,7 @@ class p2c_category_permission
 		if ( array_key_exists($categoryid, $all_permit_jenis) )
 			return json_decode($all_permit_jenis[$categoryid]);
 		else 
-			return array(0);	
+			return array();
 	}
 
 	function user_type($userid) 
@@ -165,7 +165,7 @@ class p2c_category_permission
 		$user_type = $this->user_type(qa_get_logged_in_userid());
 		
 		if ( qa_get_logged_in_level() >= $permit_level || $permit_level == 0 ){
-				if ( in_array($user_type, $permit_jenis) || $permit_jenis == array(0) )
+				if ( in_array($user_type, $permit_jenis) || $permit_jenis == array() )
 				return true;
 			else
 				return false;
