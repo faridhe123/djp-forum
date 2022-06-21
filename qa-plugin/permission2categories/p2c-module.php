@@ -33,14 +33,7 @@ class p2c_category_permission
 		$permit_level = qa_post_text('p2c_permit_level');
 		if ( qa_clicked('dosavecategory') && isset($permit_level) && !qa_clicked('docancel') ){
 			$this->edit_permit_level(qa_post_text('edit'), $this->category_metakey, qa_post_text('p2c_permit_level'));
-		}
 
-//		$user_type = qa_post_text('user_type');
-		if ( qa_clicked('dosavecategory') && !qa_clicked('docancel') ){
-//			foreach($_POST['user_type'] as $type) {
-//				# Filter untuk security
-//				$user_type[] = qa_post_text($type);
-//			}var_dump($user_type);
             if (isset($_POST['user_type']) )
                 $this->edit_permit_user_type(qa_post_text('edit'), $this->category_usertype_metakey, json_encode($_POST['user_type']));
             else
