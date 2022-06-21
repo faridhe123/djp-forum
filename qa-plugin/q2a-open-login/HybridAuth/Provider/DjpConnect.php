@@ -164,6 +164,8 @@ class DjpConnect extends OAuth2 {
 
         $userProfile->emailVerified = ($data->get('email_verified') === true || $data->get('email_verified') === 1) ? $userProfile->email : '';
 
+        // TODO : menambahkan data role , dan bersihkan data untuk 'user profile'
+
         if ($this->config->get('photo_size')) {
             $userProfile->photoURL .= '?sz=' . $this->config->get('photo_size');
         }

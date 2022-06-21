@@ -99,6 +99,7 @@ function qa_log_in_external_user($source, $identifier, $fields)
 		//always update email and handle
 		if($oemail) qa_db_user_login_set__open($source, $identifier, 'oemail', $oemail);
 		qa_db_user_login_set__open($source, $identifier, 'ohandle', $ohandle);
+        // TODO : Selalu memperbarui role sesuai yang didapat di IAM
 		
 		qa_set_logged_in_user($users[0]['userid'], $users[0]['handle'], $remember, $aggsource);
 	
@@ -130,10 +131,12 @@ function qa_log_in_external_user($source, $identifier, $fields)
 					unset($fields['email']); 
 				}
 			}
-			
+
 			$userid=qa_create_new_user((string)@$fields['email'], null /* no password */, $handle,
 				isset($fields['level']) ? $fields['level'] : QA_USER_LEVEL_BASIC, @$fields['confirmed']);
-			
+
+			// TODO : Tentukan menaruh data 'ROLE' di tabel mana (usermetas / userprofile / user)
+
 			qa_db_user_set($userid, 'oemail', $oemail);
 			qa_db_user_login_add($userid, $source, $identifier);
 			qa_db_user_login_set__open($source, $identifier, 'oemail', $oemail);
