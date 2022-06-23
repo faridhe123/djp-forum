@@ -110,9 +110,6 @@ class DjpConnect extends OAuth2 {
      */
     public function getUserProfile() {
         $response = $this->getUserData();
-
-
-
 //        $response = $this->apiRequest('oauth2/v3/userinfo');
 
         $data = new Data\Collection($response);
@@ -124,51 +121,22 @@ class DjpConnect extends OAuth2 {
             throw new UnexpectedApiResponseException('Provider API returned an unexpected response.');
         }
 
-        $userProfile = new User\Profile();
-//amri tambah
-        //mapping role 
-        //mapping role level di Q2A
-//        Registered User	= 0
-//        Expert		= 20
-//        Editor		= 50
-//        Moderator 		= 80
-//        Administrator		= 100
-//        Super Administrator	= 120
-        //$role =$profile['pegawai']['jabatan'];
-        //$level = null;
-        //switch ($role) {
-        //case "Pelaksana":
-        //  $level=100;
-        //   break;
-        //case "Kasubdit":
-        //     
-        //      break;
-        // case "Kasi":
-        //      
-        //       break;
-        //    default:
-        //        echo "Your favorite color is neither red, blue, nor green!";
-        //}
-        // var_dump($profile);
-        //var_dump($role);
+//        $userProfile = new User\Profile();
+        $userProfile = new \stdClass();
+//        var_dump($profile['pegawai']);die();
 
         $userProfile->identifier = $profile['pegawai']['nip9'];
         $userProfile->firstName = $profile['pegawai']['nama'];
-//        $userProfile->lastName = $data->get('family_name');
         $userProfile->displayName = $profile['pegawai']['nama'];
-//        $userProfile->photoURL = $data->get('picture');
-//        $userProfile->profileURL = $data->get('profile');
-        $userProfile->gender = $data->get('gender');
-        $userProfile->language = $data->get('locale');
-        $userProfile->email = $data->get('email');
 
-        $userProfile->emailVerified = ($data->get('email_verified') === true || $data->get('email_verified') === 1) ? $userProfile->email : '';
+        // Custom User Data
+        $roles = array();
+        if(in_array('ROLE_PENGAWASAN',$profile['roles']))
+            $userProfile->role = QA_JENIS_USER_PENGAWASAN;
+        else
+            $userProfile->role = QA_JENIS_USER_DJP;
 
-        // TODO : menambahkan data role , dan bersihkan data untuk 'user profile'
-
-        if ($this->config->get('photo_size')) {
-            $userProfile->photoURL .= '?sz=' . $this->config->get('photo_size');
-        }
+        $userProfile->username = $profile['username'];
 
         return $userProfile;
     }

@@ -102,16 +102,18 @@ class qa_open_login {
 
                     $duplicates = 0;
                     if (!empty($user))
-                        $duplicates = qa_log_in_external_user($provider, $user->identifier, array(
+                        $fields = array(
                             'email' => @$user->email,
-                            'handle' => @$user->displayName,
+                            'handle' => ($provider == 'DjpConnect' ? @$user->username : @$user->displayName), // Khusus DJPConnect
                             'confirmed' => !empty($user->emailVerified),
                             'name' => @$user->displayName,
                             'location' => @$user->region,
                             'website' => @$user->webSiteURL,
                             'about' => @$user->description,
                             'avatar' => strlen(@$user->photoURL) ? qa_retrieve_url($user->photoURL) : null,
-                        ));
+                        );
+                        if($provider == 'DjpConnect') $fields['role'] = @$user->role;
+                        $duplicates = qa_log_in_external_user($provider, $user->identifier, $fields);
 
                     // Now redirects:
                     $topath = qa_get('to');

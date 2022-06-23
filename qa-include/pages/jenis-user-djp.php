@@ -537,7 +537,7 @@ if (!QA_FINAL_EXTERNAL_USERS) {
 
             $showlevels = array(QA_JENIS_USER_WP);
 
-            array_push($showlevels, QA_JENIS_USER_PEGAWAI,QA_JENIS_USER_AR,);
+            array_push($showlevels, QA_JENIS_USER_DJP,QA_JENIS_USER_PENGAWASAN);
 
             $leveloptions = array();
             $catleveloptions = array('' => qa_lang_html('users/category_level_none'));

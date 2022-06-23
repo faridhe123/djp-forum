@@ -33,8 +33,8 @@ define('QA_USER_LEVEL_ADMIN', 100);
 define('QA_USER_LEVEL_SUPER', 120);
 
 define('QA_JENIS_USER_WP', 1);
-define('QA_JENIS_USER_PEGAWAI', 2);
-define('QA_JENIS_USER_AR', 3);
+define('QA_JENIS_USER_DJP', 2);
+define('QA_JENIS_USER_PENGAWASAN', 3);
 
 define('QA_USER_FLAGS_EMAIL_CONFIRMED', 1);
 define('QA_USER_FLAGS_USER_BLOCKED', 2);

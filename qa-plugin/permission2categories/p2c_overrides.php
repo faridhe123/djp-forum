@@ -99,9 +99,9 @@ function qa_user_level_string($level,$jenis=false)
     } else {
         if ($level == QA_JENIS_USER_WP)
             $string = 'users/jenis_wp';
-        elseif ($level == QA_JENIS_USER_PEGAWAI)
+        elseif ($level == QA_JENIS_USER_DJP)
             $string = 'users/jenis_pegawai';
-        elseif ($level == QA_JENIS_USER_AR)
+        elseif ($level == QA_JENIS_USER_PENGAWASAN)
             $string = 'users/jenis_ar';
     }
 
