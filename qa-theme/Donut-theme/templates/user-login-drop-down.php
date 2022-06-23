@@ -57,12 +57,12 @@
             <?php if ( isset( $this->content['navigation']['user'] ) && count( $this->content['navigation']['user'] ) > 2 ): ?>
                 <li>
                     <div class="login-or">
-                        <hr class="hr-or colorgraph">
-                        <span class="span-or">or</span>
+<!--                        <hr class="hr-or colorgraph">-->
+<!--                        <span class="span-or">or</span>-->
                     </div>
                 </li>
             <?php endif ?>
-            <?php if (!defined( 'QA_WORDPRESS_INTEGRATE_PATH' )): ?>
+            <?php if (!defined( 'QA_WORDPRESS_INTEGRATE_PATH' ) and false): // Hilangkan "and false" jika mau buka login ?>
                 <form role="form" action="<?php echo $this->content['navigation']['user']['login']['url']; ?>"
                       method="post">
                     <li>
