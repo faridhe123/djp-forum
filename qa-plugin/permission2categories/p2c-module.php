@@ -7,7 +7,7 @@ class p2c_category_permission
 	 */
 	var $category_metakey = 'p2c_permission_level';
 	var $category_usertype_metakey = 'custom_user_type';
-	var $user_usertype_metakey = 'custom_usertype';
+	var $user_usertype_metakey = 'custom_user_type';
 	
 	/**
 	 * @var array - Cache for the category permission levels
