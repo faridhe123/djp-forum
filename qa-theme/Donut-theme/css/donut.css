@@ -234,14 +234,26 @@ header#top-header .top-html-block a:visited {
   color: #fff;
   text-decoration: none;
 }
-header#nav-header {
+header#nav-header{
   min-height: 80px;
 }
+
 @media only screen and (max-width: 767px) {
   header#nav-header {
     min-height: 50px;
   }
 }
+
+header.nav-qa nav.navbar {
+  background: linear-gradient(180deg, #263788 0%, #212C5F 60%, #070F32 100%);
+}
+
+header.nav-qa nav.navbar a.qa-logo-link {
+  color: #ffffff;
+}
+
+
+
 .navbar {
   background: linear-gradient(180deg, #f4f4f4 0%, #ffffff 76%, #e0e0e0 100%);
   margin-bottom: 0;
@@ -250,6 +262,7 @@ header#nav-header {
   transition: top 0.6s, opacity 0.6s, background 0.3s;
   border: 0;
 }
+
 .navbar.affix {
   position: fixed;
   top: 0;
@@ -500,18 +513,33 @@ header#nav-header {
   .navbar-nav > li.dropdown {
     margin-top: 0;
   }
+
+  header.nav-qa .navbar-nav > li > a {
+    padding: 10px 5px;
+    line-height: 30px;
+    border-radius: 10%;
+    color: #ffffff;
+  }
+
+  header.nav-qa .navbar-nav > li > a:hover,
+  header.nav-qa .navbar-nav > li > a:active,
+  header.nav-qa .navbar-nav > li > a:focus {
+    background-color: #fbfbfb;
+    color: #C89221;
+  }
+
   .navbar-nav > li > a {
     padding: 10px 5px;
     line-height: 30px;
-    background-color: #f9f9f9;
     border-radius: 10%;
-    color: #005cac;
+    color: #070F32;
   }
+
   .navbar-nav > li > a:hover,
   .navbar-nav > li > a:active,
   .navbar-nav > li > a:focus {
     background-color: #fbfbfb;
-    color: #f0ad4e;
+    color: #C89221;
   }
 }
 /* small caret at the dropdown menu */

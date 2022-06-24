@@ -1,5 +1,58 @@
 <div id="site-header" class="site-header text-center">
-    <div class="site-header-cover">
+    <div id="tes-carousel" class="carousel slide" data-ride="carousel">
+    <!-- indikator -->
+    <ol class="carousel-indicators">
+        <li data-target="#tes-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#tes-carousel" data-slide-to="1"></li>
+        <li data-target="#tes-carousel" data-slide-to="2"></li>
+    </ol>
+        
+    <div class="carousel-inner">
+    
+        <!-- slide 1 -->
+        <div class="item active">
+        <img  style='height: 400px ; width: 100%; object-fit: cover' src="https://cdn-wordpress-info.futurelearn.com/info/wp-content/uploads/how-does-the-economy-work.jpg" alt="Demo 1"/>
+        <!-- caption -->
+        <div class="carousel-caption">
+            <h3>Judul Caption 1</h3>
+            <p>Keterangan selanjutnya Caption 1</p>
+        </div>
+        </div>
+        
+        <!-- slide 2 -->
+        <div class="item">
+        <img  style='height: 400px ; width: 100%; object-fit: cover' src="https://study.com/cimages/videopreview/videopreview-full/what-is-economy-definition-types-quiz_113903.jpg" alt="Demo 2"/>
+        <!-- caption -->
+        <div class="carousel-caption">
+            <h3>Judul Caption 2</h3>
+            <p>Keterangan selanjutnya Caption 2</p>
+        </div>
+        </div>
+        
+        <!-- slide 3 -->
+        <div class="item">
+        <img  style='height: 400px width: 100%; object-fit: contain' src="https://www.ashianahousing.com/real-estate-blog/wp-content/uploads/2021/01/Desktop-Banner.jpg" alt="Demo 3"/>
+        <!-- caption -->
+        <div class="carousel-caption">
+            <h3>Judul Caption 3</h3>
+            <p>Keterangan selanjutnya Caption 3</p>
+        </div>
+        </div>
+        
+    </div>
+    
+    <!-- kontrol-->
+    <a class="carousel-control left" href="#tes-carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control right" href="#tes-carousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    
+    </div>
+    <!-- <div class="site-header-cover">
         <div class="site-header-fade"></div>
         <div class="site-header-entry">
             <?php if ( qa_opt( 'donut_banner_closable' ) ): ?>
@@ -62,9 +115,9 @@
                     </div>
                 <?php endif ?>
 
-                <!--IF you are using the default vector , you should not remove the attribution for freepik.com-->
+                
                 <div class="col-lg-12 visible-lg text-right small">vector designed by Freepik.com</div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

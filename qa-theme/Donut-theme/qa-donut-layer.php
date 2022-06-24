@@ -220,24 +220,24 @@
             $extratags = isset($this->content['wrapper_tags']) ? $this->content['wrapper_tags'] : '';
             $this->output( '<div class="qa-body-wrapper"' . $extratags . '>', '' );
 
-            $this->output( '<main class="donut-masthead">' );
+            // $this->output( '<main class="donut-masthead">' );
 
-            $this->output( '<div class="container">' );
-            $this->notices();
-            $this->output( '</div>' );
+            // $this->output( '<div class="container">' );
+            // $this->notices();
+            // $this->output( '</div>' );
 
-            $this->output( '<div class="container">' );
+            // $this->output( '<div class="container">' );
 
-            $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
+            // $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
 
-            $this->output( '<div class="page-title' . $extra_title_class . '">' );
-            $this->page_title_error();
-            $this->output( '</div>' );
+            // $this->output( '<div class="page-title' . $extra_title_class . '">' );
+            // $this->page_title_error();
+            // $this->output( '</div>' );
 
-            $this->donut_breadcrumb();
-            $this->output( '</div>' );
+            // $this->donut_breadcrumb();
+            // $this->output( '</div>' );
 
-            $this->output( '</main>' );
+            // $this->output( '</main>' );
 
             $this->output( '<div class="container">', '' );
 
@@ -367,7 +367,7 @@
             if ( !empty( $this->content['navigation']['sub'] ) || $this->template == 'admin' ) {
                 $this->donut_sidebar_toggle_nav_btn();
             }
-
+            
             $this->widgets( 'main', 'top' );
 
             if ( !empty( $this->content['navigation']['sub'] ) || $this->template == 'admin' ) {
@@ -379,7 +379,11 @@
             }
 
             $this->widgets( 'main', 'high' );
-
+            $this->output( "<h2>Top Category</h2>" );
+            $this->main_parts( $content );
+            $this->output( "<h2>Pertanyaan Favorit</h2>" );
+            $this->main_parts( $content );
+            $this->output( "<h2>Pertanyaan Terbaru</h2>" );
             $this->main_parts( $content );
 
             $this->widgets( 'main', 'low' );
@@ -523,9 +527,10 @@
             if ( qa_opt( 'donut_enable_top_bar' ) ) {
                 donut_include_template( 'top-header.php' );
             }
-
+            
             ?>
-            <header id="nav-header">
+            <header id="nav-header" 
+            <?php echo($this->template == "qa" ? 'class="nav-qa"' : '' )?>>
                 <nav id="nav" class="navbar navbar-static-top"
                      role="navigation" <?php echo( qa_opt( 'donut_enable_sticky_header' ) ? 'data-spy="affix" data-offset-top="33"' : '' ) ?>>
                     <div class="container">
@@ -551,6 +556,7 @@
                 </nav>
             </header>
             <?php
+            
             return ob_get_clean();
         }
 
