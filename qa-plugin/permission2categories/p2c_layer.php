@@ -19,9 +19,9 @@ class qa_html_theme_layer extends qa_html_theme_base
 				);
 
         $permitjenis = array(
-            1 	=> 'WP',
-            2 	=> 'PEGAWAI',
-            3	=> 'AR'
+            1 	=> 'ROLE_USER_NON_DJP',
+            2 	=> 'ROLE_USER_DJP',
+            3	=> 'ROLE_PENGAWAS'
         );
 
 		if( $this->request == 'admin/categories' &&  qa_get('edit') >= 1 ) {

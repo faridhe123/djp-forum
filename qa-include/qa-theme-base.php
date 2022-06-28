@@ -1006,7 +1006,10 @@ class qa_html_theme_base
 		if (!empty($form['ok'])) {
 			$this->output(
 				'<tr>',
-				'<td colspan="' . $columns . '" class="qa-form-' . $form['style'] . '-ok">',
+				'<td colspan="' . $columns . '" class="qa-form-' . $form['style']
+
+
+                . '-ok">',
 				$form['ok'],
 				'</td>',
 				'</tr>'
