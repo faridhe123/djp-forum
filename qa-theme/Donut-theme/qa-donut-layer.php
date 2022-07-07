@@ -356,6 +356,40 @@
             $this->output( '<a href="' . $nav_item['url'] . '" class="list-group-item ' . $class . '">' . $icon . $nav_item['label'] . '</a>' );
         }
 
+        /**
+         * category item for the main
+         *
+         * @param  array $cat_item category item
+         *
+         * @return null
+         */
+        function nav_cat( $navtype, $level = null )
+        {
+            $navigation = @$this->content['navigation'][$navtype];
+
+            if ($navtype == 'user' || isset($navigation)) {
+                $this->output('<div class="qa-nav-' . $navtype . '">');
+
+                if ($navtype == 'user')
+                    $this->logged_in();
+
+                // reverse order of 'opposite' items since they float right
+                foreach (array_reverse($navigation, true) as $key => $navlink) {
+                    if (@$navlink['opposite']) {
+                        unset($navigation[$key]);
+                        $navigation[$key] = $navlink;
+                    }
+                }
+
+                $this->nav_list($navigation, 'nav-' . $navtype, $level);
+                $this->nav_clear($navtype);
+                $this->clear_context('nav_type');
+
+                $this->output('</div>');
+            }
+            
+        }
+
         function main()
         {
             $content = $this->content;
@@ -379,12 +413,16 @@
             }
 
             $this->widgets( 'main', 'high' );
+            if ($this->template == 'qa') {
             $this->output( "<h2>Top Category</h2>" );
-            $this->main_parts( $content );
+            $this->nav_cat( 'cat', 1 );
             $this->output( "<h2>Pertanyaan Favorit</h2>" );
             $this->main_parts( $content );
             $this->output( "<h2>Pertanyaan Terbaru</h2>" );
-            $this->main_parts( $content );
+            $this->main_parts( $content );} 
+            else {
+                $this->main_parts( $content );   
+            }
 
             $this->widgets( 'main', 'low' );
 
@@ -529,8 +567,7 @@
             }
             
             ?>
-            <header id="nav-header" 
-            <?php echo($this->template == "qa" ? 'class="nav-qa"' : '' )?>>
+            <header id="nav-header">
                 <nav id="nav" class="navbar navbar-static-top"
                      role="navigation" <?php echo( qa_opt( 'donut_enable_sticky_header' ) ? 'data-spy="affix" data-offset-top="33"' : '' ) ?>>
                     <div class="container">
