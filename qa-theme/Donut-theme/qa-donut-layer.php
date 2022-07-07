@@ -416,6 +416,7 @@
             if ($this->template == 'qa') {
             $this->output( "<h2>Top Category</h2>" );
             $this->nav_cat( 'cat', 1 );
+            
             $this->output( "<h2>Pertanyaan Favorit</h2>" );
             $this->main_parts( $content );
             $this->output( "<h2>Pertanyaan Terbaru</h2>" );
