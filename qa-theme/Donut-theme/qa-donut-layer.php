@@ -206,7 +206,7 @@
             $this->body_prefix();
 
             $this->output( '<div class="container">' );
-            $this->output( '<div class="top-divider"></div>' );
+            // $this->output( '<div class="top-divider"></div>' );
             $this->output( '</div>' );
 
             $this->donut_site_header();
@@ -414,8 +414,8 @@
 
             $this->widgets( 'main', 'high' );
             if ($this->template == 'qa') {
-            $this->output( "<h2>Top Category</h2>" );
-            $this->nav_cat( 'cat', 1 );
+            // $this->output( "<h2>Top Category</h2>" );
+            // $this->nav_cat( 'cat', 1 );
             
             $this->output( "<h2>Pertanyaan Favorit</h2>" );
             $this->main_parts( $content );
@@ -452,7 +452,7 @@
         }
 
         function sidepanel()
-        {
+        {   
             $this->output( '<div class="qa-sidepanel col-md-3 col-xs-12 pull-right">' );
             $this->output( '<div class="side-search-bar hidden-xs">' );
             $this->search();
