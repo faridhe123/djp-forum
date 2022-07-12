@@ -395,7 +395,6 @@ function qa_page_routing()
     if (qa_to_override(__FUNCTION__)) { $args=func_get_args(); return qa_call_override(__FUNCTION__, $args); }
 
     return array(
-        '' => 'pages/questions.php',
         'account' => 'pages/account.php',
         'activity/' => 'pages/activity.php',
         'admin/' => 'pages/admin/admin-default.php',

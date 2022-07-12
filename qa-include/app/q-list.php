@@ -159,7 +159,7 @@ function qa_q_list_page_content($questions, $pagesize, $start, $count, $sometitl
  */
 function qa_qs_sub_navigation($sort, $categoryslugs)
 {
-	$request = '';
+	$request = 'questions';
 
 	if (isset($categoryslugs)) {
 		foreach ($categoryslugs as $slug) {
