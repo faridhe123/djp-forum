@@ -2299,7 +2299,6 @@ header#nav-header{
   /* margin-bottom: 10px; */
 }
 .qa-nav-sub {
-  padding-left: 5px;
   padding-right: 5px;
 }
 @media (max-width: 767px) {
@@ -2428,6 +2427,16 @@ header#nav-header{
   color: #d9534f !important;
   font-weight: 700;
 }
+
+.qa-subtitle {
+  background-color:#212c5f;
+  color: #ffffff;
+  padding: 10px;
+  margin-bottom: 0px;
+  border-radius:10px 10px 0px 0px;
+  box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 20%), 0 -3px 10px 0 rgb(0 0 0 / 19%);
+}
+
 @media only screen and (max-width: 767px) {
   .qa-main-wrapper {
     position: relative;
@@ -2940,7 +2949,7 @@ header#nav-header{
   padding-right: 15px;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, .9);
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 3px 10px 0 rgb(0 0 0 / 19%);
 }
 @media (max-width: 767px) {
@@ -2991,16 +3000,17 @@ header#nav-header{
   border: 1px solid transparent;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  border-color: #dddddd;
+  border-top-color: #dddddd;
   margin-bottom: -1px;
 }
 .qa-q-list-item:first-child {
+  border-top: none;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
 .qa-q-list-item:last-child {
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .qa-template-user-answers .qa-q-item-stats,
 .qa-template-user-activity .qa-q-item-stats {

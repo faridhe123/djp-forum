@@ -220,24 +220,24 @@
             $extratags = isset($this->content['wrapper_tags']) ? $this->content['wrapper_tags'] : '';
             $this->output( '<div class="qa-body-wrapper"' . $extratags . '>', '' );
 
-            // $this->output( '<main class="donut-masthead">' );
+            $this->output( '<main class="donut-masthead">' );
 
-            // $this->output( '<div class="container">' );
-            // $this->notices();
-            // $this->output( '</div>' );
+            $this->output( '<div class="container">' );
+            $this->notices();
+            $this->output( '</div>' );
 
-            // $this->output( '<div class="container">' );
+            $this->output( '<div class="container">' );
 
-            // $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
+            $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
 
-            // $this->output( '<div class="page-title' . $extra_title_class . '">' );
-            // $this->page_title_error();
-            // $this->output( '</div>' );
+            $this->output( '<div class="page-title' . $extra_title_class . '">' );
+            $this->page_title_error();
+            $this->output( '</div>' );
 
-            // $this->donut_breadcrumb();
-            // $this->output( '</div>' );
+            $this->donut_breadcrumb();
+            $this->output( '</div>' );
 
-            // $this->output( '</main>' );
+            $this->output( '</main>' );
 
             $this->output( '<div class="container">', '' );
 
@@ -390,6 +390,14 @@
             
         }
 
+        function subtitle( $subtitle )
+        {
+            $this->output('<h2 class="qa-subtitle">');
+            $this->output($subtitle);
+            $this->output('</h2>');
+            
+        }
+
         function main()
         {
             $content = $this->content;
@@ -414,7 +422,7 @@
 
             $this->widgets( 'main', 'high' );
             if ($this->template == 'qa') {
-            $this->output( "<h2 class='sub-title'>Recent Questions</h2>" );
+            $this->subtitle('Recent Questions');
             // $this->nav_cat( 'cat', 1 );
             // $this->output( "<h2>Pertanyaan Favorit</h2>" );
             // $this->main_parts( $content );
