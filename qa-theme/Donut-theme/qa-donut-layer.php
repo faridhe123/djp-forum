@@ -220,24 +220,24 @@
             $extratags = isset($this->content['wrapper_tags']) ? $this->content['wrapper_tags'] : '';
             $this->output( '<div class="qa-body-wrapper"' . $extratags . '>', '' );
 
-            $this->output( '<main class="donut-masthead">' );
+            // $this->output( '<main class="donut-masthead">' );
 
-            $this->output( '<div class="container">' );
-            $this->notices();
-            $this->output( '</div>' );
+            // $this->output( '<div class="container">' );
+            // $this->notices();
+            // $this->output( '</div>' );
 
-            $this->output( '<div class="container">' );
+            // $this->output( '<div class="container">' );
 
-            $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
+            // $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
 
-            $this->output( '<div class="page-title' . $extra_title_class . '">' );
-            $this->page_title_error();
-            $this->output( '</div>' );
+            // $this->output( '<div class="page-title' . $extra_title_class . '">' );
+            // $this->page_title_error();
+            // $this->output( '</div>' );
 
-            $this->donut_breadcrumb();
-            $this->output( '</div>' );
+            // $this->donut_breadcrumb();
+            // $this->output( '</div>' );
 
-            $this->output( '</main>' );
+            // $this->output( '</main>' );
 
             $this->output( '<div class="container">', '' );
 
@@ -1356,7 +1356,7 @@
 
         public function donut_site_header()
         {
-            if ( $this->is_home() && qa_opt( 'donut_show_home_page_banner' ) ) {
+            if ( ($this->is_home() || $this->template === 'qa') && qa_opt( 'donut_show_home_page_banner' ) ) {
                 //check if user closed the header intentionally
                 $user_hidden = qa_opt( 'donut_banner_closable' ) ?
                         @$_COOKIE['donut_hide_site_header'] : 'no';

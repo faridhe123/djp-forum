@@ -1541,7 +1541,7 @@ header#nav-header{
 }
 .donut-footer {
   padding: 25px 0;
-  background-color: #02275d;
+  background-color: #212c5f;
 }
 .qa-footer {
   color: white;
@@ -2142,6 +2142,7 @@ header#nav-header{
 /* Page sections */
 .qa-sidepanel {
   min-height: 80px;
+  margin-top: 20px;
   background-color: rgba(255, 255, 255, .9);
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 3px 10px 0 rgb(0 0 0 / 19%);
