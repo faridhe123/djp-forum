@@ -1677,6 +1677,22 @@ header#nav-header{
   text-align: left;
 }
 
+.site-header .carousel-inner a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-header .carousel-inner a:hover,
+.site-header .carousel-inner a:active {
+  color: #212c5f;
+  text-decoration: underline;
+}
+
+.site-header .carousel-control {
+  width:5%;
+}
+
 .site-header .site-header-cover {
   background-color: #337ab7;
 }

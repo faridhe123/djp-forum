@@ -49,11 +49,14 @@
         'donut_copyright_text'               => 'text',
         'donut_banner_head_text'             => 'text',
         'donut_banner_div1_text'             => 'text',
-        'donut_banner_div1_icon'             => 'text',
+        'donut_banner_div1_link'             => 'text',
+        'donut_banner_div1_img'              => 'text',
         'donut_banner_div2_text'             => 'text',
-        'donut_banner_div2_icon'             => 'text',
+        'donut_banner_div2_link'             => 'text',
+        'donut_banner_div2_img'              => 'text',
         'donut_banner_div3_text'             => 'text',
-        'donut_banner_div3_icon'             => 'text',
+        'donut_banner_div3_link'             => 'text',
+        'donut_banner_div3_img'              => 'text',
         'donut_top_bar_left_text'            => 'text',
         'donut_top_bar_right_text'           => 'text',
         'donut_facebook_url'                 => 'text',
@@ -86,7 +89,7 @@
             $showoptions = array( 'donut_general_settings_notice', 'donut_activate_prod_mode', 'donut_use_local_font','donut_enable_top_bar', 'donut_top_bar_left_text', 'donut_top_bar_right_text', 'donut_show_top_social_icons', 'donut_enable_sticky_header', 'donut_enable_back_to_top_btn' );
             array_push( $showoptions, 'donut_show_custom_404_page', 'donut_custom_404_text' );
 
-            array_push( $showoptions, 'donut_homepage_settings_notice', 'donut_show_home_page_banner', 'donut_banner_head_text', 'donut_banner_div1_text', 'donut_banner_div1_icon', 'donut_banner_div2_text', 'donut_banner_div2_icon', 'donut_banner_div3_text', 'donut_banner_div3_icon', 'donut_banner_show_ask_box', 'donut_banner_closable' );
+            array_push( $showoptions, 'donut_homepage_settings_notice', 'donut_show_home_page_banner', 'donut_banner_head_text', 'donut_banner_div1_text', 'donut_banner_div1_link', 'donut_banner_div1_img', 'donut_banner_div2_text', 'donut_banner_div2_link', 'donut_banner_div2_img',  'donut_banner_div3_text', 'donut_banner_div3_link', 'donut_banner_div3_img', 'donut_banner_show_ask_box', 'donut_banner_closable' );
 
             if ( class_exists( 'Ami_Breadcrumb' ) ) {
                 array_push( $showoptions, '', 'donut_show_breadcrumbs' );
@@ -104,11 +107,14 @@
                 'donut_show_top_social_icons' => 'option_donut_enable_top_bar',
                 'donut_banner_head_text'      => 'option_donut_show_home_page_banner',
                 'donut_banner_div1_text'      => 'option_donut_show_home_page_banner',
-                'donut_banner_div1_icon'      => 'option_donut_show_home_page_banner',
+                'donut_banner_div1_link'      => 'option_donut_show_home_page_banner',
+                'donut_banner_div1_img'      => 'option_donut_show_home_page_banner',
                 'donut_banner_div2_text'      => 'option_donut_show_home_page_banner',
-                'donut_banner_div2_icon'      => 'option_donut_show_home_page_banner',
+                'donut_banner_div2_link'      => 'option_donut_show_home_page_banner',
+                'donut_banner_div2_img'      => 'option_donut_show_home_page_banner',
                 'donut_banner_div3_text'      => 'option_donut_show_home_page_banner',
-                'donut_banner_div3_icon'      => 'option_donut_show_home_page_banner',
+                'donut_banner_div3_link'      => 'option_donut_show_home_page_banner',
+                'donut_banner_div3_img'      => 'option_donut_show_home_page_banner',
                 'donut_banner_show_ask_box'   => 'option_donut_show_home_page_banner',
                 'donut_banner_closable'       => 'option_donut_show_home_page_banner',
                 'donut_copyright_text'        => 'option_donut_show_copyright_at_footer',

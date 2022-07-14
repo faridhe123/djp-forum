@@ -11,31 +11,31 @@
     
         <!-- slide 1 -->
         <div class="item active">
-        <img src="https://cdn-wordpress-info.futurelearn.com/info/wp-content/uploads/how-does-the-economy-work.jpg" alt="Demo 1"/>
+        <img src="<?php echo qa_opt( 'donut_banner_div1_img' ) ?>" alt="Demo 1"/>
         <!-- caption -->
         <div class="carousel-caption">
-            <h3>Judul Caption 1</h3>
-            <p>Keterangan selanjutnya Caption 1</p>
+            <h2><?php echo qa_opt( 'donut_banner_div1_text' ) ?></h2>
+            <a href='<?php echo qa_opt( 'donut_banner_div1_link' ) ?>'>Show More...</a>
         </div>
         </div>
         
         <!-- slide 2 -->
         <div class="item">
-        <img src="https://study.com/cimages/videopreview/videopreview-full/what-is-economy-definition-types-quiz_113903.jpg" alt="Demo 2"/>
+        <img src="<?php echo qa_opt( 'donut_banner_div2_img' ) ?>" alt="Demo 2"/>
         <!-- caption -->
         <div class="carousel-caption">
-            <h3>Judul Caption 2</h3>
-            <p>Keterangan selanjutnya Caption 2</p>
+            <h2><?php echo qa_opt( 'donut_banner_div2_text' ) ?></h2>
+            <a href='<?php echo qa_opt( 'donut_banner_div2_link' ) ?>'>Show More...</a>
         </div>
         </div>
         
         <!-- slide 3 -->
         <div class="item">
-        <img src="https://www.ashianahousing.com/real-estate-blog/wp-content/uploads/2021/01/Desktop-Banner.jpg" alt="Demo 3"/>
+        <img src="<?php echo qa_opt( 'donut_banner_div3_img' ) ?>" alt="Demo 3"/>
         <!-- caption -->
         <div class="carousel-caption">
-            <h3>Judul Caption 3</h3>
-            <p>Keterangan selanjutnya Caption 3</p>
+            <h2><?php echo qa_opt( 'donut_banner_div3_text' ) ?></h2>
+            <a href='<?php echo qa_opt( 'donut_banner_div3_link' ) ?>'>Show More...</a>
         </div>
         </div>
         
