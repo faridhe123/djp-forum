@@ -394,8 +394,8 @@
         {
             $this->output('<h2 class="qa-subtitle">');
             $this->output($subtitle);
-            $this->output('</h2>');
-            
+            // $this->page_title_error();
+            $this->output('</h2>');      
         }
 
         function main()
@@ -421,6 +421,10 @@
             }
 
             $this->widgets( 'main', 'high' );
+            if (isset($this->content['success']))
+			$this->success($this->content['success']);
+            if (isset($this->content['error']))
+			$this->error($this->content['error']);
             if ($this->template == 'qa') {
             $this->subtitle('Recent Questions');
             // $this->nav_cat( 'cat', 1 );
