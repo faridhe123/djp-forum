@@ -15,7 +15,7 @@
         <!-- caption -->
         <div class="carousel-caption">
             <h2><?php echo qa_opt( 'donut_banner_div1_text' ) ?></h2>
-            <a href='<?php echo qa_opt( 'donut_banner_div1_link' ) ?>'>Show More...</a>
+            <a href='<?php echo qa_opt( 'donut_banner_div1_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
         </div>
         </div>
         
@@ -25,7 +25,7 @@
         <!-- caption -->
         <div class="carousel-caption">
             <h2><?php echo qa_opt( 'donut_banner_div2_text' ) ?></h2>
-            <a href='<?php echo qa_opt( 'donut_banner_div2_link' ) ?>'>Show More...</a>
+            <a href='<?php echo qa_opt( 'donut_banner_div2_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
         </div>
         </div>
         
@@ -35,7 +35,7 @@
         <!-- caption -->
         <div class="carousel-caption">
             <h2><?php echo qa_opt( 'donut_banner_div3_text' ) ?></h2>
-            <a href='<?php echo qa_opt( 'donut_banner_div3_link' ) ?>'>Show More...</a>
+            <a href='<?php echo qa_opt( 'donut_banner_div3_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
         </div>
         </div>
         
