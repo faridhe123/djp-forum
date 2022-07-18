@@ -32,12 +32,12 @@
                         <?php echo qa_lang_html( 'main/nav_admin' ); ?>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="<?php echo qa_path_html( 'admin/donut-theme/general-settings' ) ?>">
                         <span class="fa fa-wrench"></span>
                         <?php echo donut_lang( 'donut_theme_settings' ); ?>
                     </a>
-                </li>
+                </li> -->
                 <li class="dropdown-header">Profile Section</li>
             <?php endif ?>
             <li>
@@ -47,14 +47,14 @@
                 </a>
             </li>
             <?php if ( !defined( 'QA_WORDPRESS_INTEGRATE_PATH' ) ): ?>
-                <?php if ( qa_opt( 'allow_private_messages' ) && !( $useraccount['flags'] & QA_USER_FLAGS_NO_MESSAGES ) ): ?>
+                <!-- <?php if ( qa_opt( 'allow_private_messages' ) && !( $useraccount['flags'] & QA_USER_FLAGS_NO_MESSAGES ) ): ?>
                     <li>
                         <a href="<?php echo qa_path_html( 'messages' ) ?>">
                             <span class="fa fa-envelope"></span>
                             <?php echo qa_lang_html( 'misc/nav_user_pms' ) ?>
                         </a>
                     </li>
-                <?php endif ?>
+                <?php endif ?> -->
                 <li>
                     <a href="<?php echo qa_path_html( 'user/' . qa_get_logged_in_handle() ); ?>">
                         <span class="fa fa-money"></span>

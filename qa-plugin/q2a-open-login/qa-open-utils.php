@@ -177,12 +177,7 @@ function qa_open_login_get_provider_scope($provider) {
 	{
 		case 'Facebook':
 			// default scope for facebook is 'email', 'public_profile'
-			// return 'email,user_about_me,user_location,user_website';
-			return 'email,user_location';
-		case 'Dejepe':
-			// default scope for facebook is 'email', 'public_profile'
-			// return 'email,user_about_me,user_location,user_website';
-			return '';
+			return 'email,user_about_me,user_location,user_website';
 
 		case 'Google':
 			// default scope for Google also includes https://www.google.com/m8/feeds/ (contacts)

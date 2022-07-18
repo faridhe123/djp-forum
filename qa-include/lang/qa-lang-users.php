@@ -134,4 +134,10 @@ return array(
 	'wall_posts_explanation' => 'Allow users to post on your wall (you will also be emailed)',
 	'website' => 'Website',
 	'x_ago_from_y' => '^1 ago from ^2',
+    // DJP : custom string DJP
+    'jenis_user' => 'Jenis user',
+    'jenis_wp' => 'Wajib Pajak',
+    'jenis_pegawai' => 'Pegawai',
+    'jenis_ar' => 'Account Representative',
+
 );

@@ -99,10 +99,18 @@ class Hybridauth
     public function authenticate($name)
     {
         $adapter = $this->getAdapter($name);
-        // echo "<pre>" , print_r($adapter);die();
 
         $adapter->authenticate();
 
+        return $adapter;
+    }
+
+
+    public function authenticateLogout($name) {
+        $adapter = $this->getAdapter($name);
+        $adapter->logoutDjp();
+    
+        
         return $adapter;
     }
 
@@ -115,18 +123,20 @@ class Hybridauth
     * @throws InvalidArgumentException
     * @throws UnexpectedValueException
     */
-    public function getAdapter($name) {
+    public function getAdapter($name)
+    {	
+		
         $config = $this->getProviderConfig($name);
-        
-        $adapter = isset($config['adapter']) ? $config['adapter'] : sprintf('Hybridauth\\Provider\\%s', $name);
-        // echo "<pre>" , var_dump($adapter);
-        // die();
 
+        $adapter = isset($config['adapter']) ? $config['adapter'] : sprintf('Hybridauth\\Provider\\%s', $name);
         if (!class_exists($adapter)) {
+
             $adapter = null;
             $fs = new \FilesystemIterator(__DIR__ . '/Provider/');
             /** @var \SplFileInfo $file */
+			
             foreach ($fs as $file) {
+				
                 if (!$file->isDir()) {
                     $provider = strtok($file->getFilename(), '.');
                     if ($name === mb_strtolower($provider)) {
@@ -136,20 +146,11 @@ class Hybridauth
                 }
             }
             if ($adapter === null) {
+				
                 throw new InvalidArgumentException('Unknown Provider.');
             }
         }
-
-        # coba paksa jadi DEJEPE
-        // $adapter = "Hybridauth\Provider\Dejepe";
-
-        // $objecte = new $adapter($config, $this->httpClient, $this->storage, $this->logger);
-                
-        // echo "<pre>" , var_dump($adapter);
-        // echo "<pre>" , var_dump($objecte);
-        // die();
-
-        // echo "<pre>" , print_r(new $adapter($config, $this->httpClient, $this->storage, $this->logger));die();
+		
         return new $adapter($config, $this->httpClient, $this->storage, $this->logger);
     }
 
@@ -197,8 +198,6 @@ class Hybridauth
     */
     public function isConnectedWith($name)
     {
-       
-        
         return $this->getAdapter($name)->isConnected();
     }
 
@@ -229,7 +228,6 @@ class Hybridauth
     */
     public function getConnectedProviders()
     {
-        
         $providers = [];
 
         foreach ($this->getProviders() as $name) {

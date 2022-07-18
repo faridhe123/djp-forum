@@ -332,14 +332,14 @@ class qa_open_logins_page {
 		$provider = $this->get_ha_provider($key);
 		$source = strtolower($provider);
 
- //		if($action == 'login') {
+//		if($action == 'login') {
 			// handle the login
 
 			// after login come back to the same page
 			$loginCallback = qa_path('', array(), qa_opt('site_url'));
 
 			require_once( $this->directory . 'HybridAuth/autoload.php' );
- //						require_once( $this->directory . 'Hybrid/Auth.php' );
+//						require_once( $this->directory . 'Hybrid/Auth.php' );
 			require_once( $this->directory . 'qa-open-utils.php' );
 
 			// prepare the configuration of HybridAuth
@@ -407,7 +407,7 @@ class qa_open_logins_page {
 			} catch(Exception $e) {
 				qa_redirect('logins', array('provider' => $provider, 'code' => $e->getCode()));
 			}
- //		}
+//		}
 
 		// if($action == 'process') {
 		// 	require_once( "Hybrid/Auth.php" );

@@ -103,6 +103,8 @@ class Curl implements HttpClientInterface
     */
     public function request($uri, $method = 'GET', $parameters = [], $headers = [])
     {
+
+
         $this->requestHeader = array_replace($this->requestHeader, (array) $headers);
 
         $this->requestArguments = [
@@ -111,6 +113,7 @@ class Curl implements HttpClientInterface
             'parameters' => $parameters,
             'headers' => $this->requestHeader,
         ];
+
 
         $curl = curl_init();
 
@@ -147,12 +150,13 @@ class Curl implements HttpClientInterface
         $this->curlOptions[CURLOPT_HTTPHEADER]     = $this->prepareRequestHeaders();
         $this->curlOptions[CURLOPT_HEADERFUNCTION] = [ $this, 'fetchResponseHeader' ];
 
+
         foreach ($this->curlOptions as $opt => $value) {
             curl_setopt($curl, $opt, $value);
         }
 
         $response = curl_exec($curl);
-
+         
         $this->responseBody        = $response;
         $this->responseHttpCode    = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $this->responseClientError = curl_error($curl);

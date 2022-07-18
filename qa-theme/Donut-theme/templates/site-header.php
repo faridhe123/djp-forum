@@ -1,5 +1,58 @@
 <div id="site-header" class="site-header text-center">
-    <div class="site-header-cover">
+    <div id="carousel-qa" class="carousel slide" data-ride="carousel">
+    <!-- indikator -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-qa" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-qa" data-slide-to="1"></li>
+        <li data-target="#carousel-qa" data-slide-to="2"></li>
+    </ol>
+        
+    <div class="carousel-inner">
+    
+        <!-- slide 1 -->
+        <div class="item active">
+        <img src="<?php echo qa_opt( 'donut_banner_div1_img' ) ?>" alt="Demo 1"/>
+        <!-- caption -->
+        <div class="carousel-caption">
+            <h2><?php echo qa_opt( 'donut_banner_div1_text' ) ?></h2>
+            <a href='<?php echo qa_opt( 'donut_banner_div1_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
+        </div>
+        </div>
+        
+        <!-- slide 2 -->
+        <div class="item">
+        <img src="<?php echo qa_opt( 'donut_banner_div2_img' ) ?>" alt="Demo 2"/>
+        <!-- caption -->
+        <div class="carousel-caption">
+            <h2><?php echo qa_opt( 'donut_banner_div2_text' ) ?></h2>
+            <a href='<?php echo qa_opt( 'donut_banner_div2_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
+        </div>
+        </div>
+        
+        <!-- slide 3 -->
+        <div class="item">
+        <img src="<?php echo qa_opt( 'donut_banner_div3_img' ) ?>" alt="Demo 3"/>
+        <!-- caption -->
+        <div class="carousel-caption">
+            <h2><?php echo qa_opt( 'donut_banner_div3_text' ) ?></h2>
+            <a href='<?php echo qa_opt( 'donut_banner_div3_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
+        </div>
+        </div>
+        
+    </div>
+    
+    <!-- kontrol-->
+    <a class="carousel-control left" href="#carousel-qa" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control right" href="#carousel-qa" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    
+    </div>
+    <!-- <div class="site-header-cover">
         <div class="site-header-fade"></div>
         <div class="site-header-entry">
             <?php if ( qa_opt( 'donut_banner_closable' ) ): ?>
@@ -62,9 +115,9 @@
                     </div>
                 <?php endif ?>
 
-                <!--IF you are using the default vector , you should not remove the attribution for freepik.com-->
+                
                 <div class="col-lg-12 visible-lg text-right small">vector designed by Freepik.com</div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

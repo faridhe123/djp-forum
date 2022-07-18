@@ -1,6 +1,7 @@
 /* Header */
 header#top-header {
-	background-color: @brand-primary;
+	//background-color: @brand-primary;
+	background-color: #02275d; ///
 	color: @body-bg;
 	position: relative;
 	min-height: 5px;
@@ -42,7 +43,9 @@ header#nav-header{
 }
 
 .navbar {
-	background-color: @body-bg;
+	//background-color: @body-bg;
+	background: linear-gradient(
+					180deg, rgba(244,244,244,1) 0%, rgba(255,255,255,1) 76%, rgba(224,224,224,1) 100%);///
 	margin-bottom: 0;
 	z-index: 1010;
 	-webkit-transition: top .6s, opacity .6s, background .3s;
@@ -64,7 +67,8 @@ header#nav-header{
 	}
 
 	a {
-		color: #000;
+		//color: #000;
+		color: #261f1f;///
 		opacity: .5;
 		font-weight: bold;
 		-webkit-transition: all 200ms ease-out;
@@ -196,12 +200,17 @@ header#nav-header{
 		}
 		.login-or {
 			position: relative;
-			font-size: 18px;
+			//font-size: 18px;
+			font-size: 13px;///
 			color: #aaa;
-			margin-top: 10px;
-			margin-bottom: 10px;
-			padding-top: 10px;
-			padding-bottom: 10px;
+			//margin-top: 10px;
+			//margin-bottom: 10px;
+			//padding-top: 10px;
+			//padding-bottom: 10px;
+			margin-top: 5px;///
+			margin-bottom: 5px;///
+			padding-top: 5px;///
+			padding-bottom: 5px;///
 		}
 		.span-or {
 			display: block;
@@ -244,7 +253,8 @@ header#nav-header{
 	&.user-nav ,
 	&.notf-bubble {
 		margin: 0;
-		padding: 15px 0;
+		//padding: 15px 0;
+		padding: 10px 0;///
 		display: inline-block;
 		float: right;
 		@media @mobile {
@@ -311,13 +321,24 @@ header#nav-header{
 
 	.navbar-nav > li {
 		margin-left: 15px;
+		margin-top: 10px;///
 	}
+	.navbar-nav > li.dropdown {
+		margin-top: 0;
+	}///
 
 	.navbar-nav > li > a {
-		padding: 20px 0;
+		//padding: 20px 0;
+		padding: 10px 5px;///
 		line-height: 30px;
-		&, &:hover, &:active, &:focus {
-			background-color: #fff;
+		background-color: #f9f9f9;///
+		border-radius: 10%;///
+		color: #005cac;///
+		//&, ///
+		&:hover, &:active, &:focus {
+			//background-color: #fff;
+			background-color: #fbfbfb;///
+			color:#f0ad4e;///
 		}
 	}
 
@@ -392,11 +413,18 @@ header#nav-header{
 /* top portion of the body */
 .donut-masthead {
 	position: relative;
-	margin-bottom: 20px;
-	color: @brand-primary;
+	//margin-bottom: 20px;
+	//color: @brand-primary;
+	margin-bottom: 15px;///
+	color: #212c5f;///
+	background:#f0ad4e;///
+	border-bottom: 5px solid #f0ad4e;///
 	.page-title {
-		border-bottom: 1px solid @light-border;
-		padding: 25px 40px 25px 0 ;
+		//border-bottom: 1px solid @light-border;///
+		display: block;///
+		word-wrap: break-word;///
+		//padding: 25px 40px 25px 0 ;
+		padding: 15px 40px 15px 0 ;///
 	}
 }
 
@@ -404,10 +432,15 @@ header#nav-header{
 .page-title {
 	position: relative;
 	padding: 25px 0;
+	a {
+		color: white !important;
+	}///
 	h1 {
 		clear: none;
-		font-size: 30px;
+		//font-size: 30px;
+		font-size: 25px;///
 		margin: 0;
+		width:500px;///
 	}
 }
 

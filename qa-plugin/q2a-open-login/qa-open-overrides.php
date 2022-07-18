@@ -66,7 +66,9 @@ function qa_set_logged_in_user($userid, $handle='', $remember=false, $source=nul
  */
 function qa_log_in_external_user($source, $identifier, $fields)
 {
-	require_once QA_INCLUDE_DIR.'qa-db-users.php';
+
+
+    require_once QA_INCLUDE_DIR.'qa-db-users.php';
 	$remember = qa_opt('open_login_remember') ? true : false;
 	
 	$users=qa_db_user_login_find($source, $identifier);
@@ -99,6 +101,10 @@ function qa_log_in_external_user($source, $identifier, $fields)
 		//always update email and handle
 		if($oemail) qa_db_user_login_set__open($source, $identifier, 'oemail', $oemail);
 		qa_db_user_login_set__open($source, $identifier, 'ohandle', $ohandle);
+
+        require_once QA_INCLUDE_DIR.'qa-db-metas.php';
+//        echo $fields['role'];die();
+        qa_db_usermeta_set($users[0]['userid'], 'custom_user_type', $fields['role']);
 		
 		qa_set_logged_in_user($users[0]['userid'], $users[0]['handle'], $remember, $aggsource);
 	
@@ -130,10 +136,14 @@ function qa_log_in_external_user($source, $identifier, $fields)
 					unset($fields['email']); 
 				}
 			}
-			
+
 			$userid=qa_create_new_user((string)@$fields['email'], null /* no password */, $handle,
 				isset($fields['level']) ? $fields['level'] : QA_USER_LEVEL_BASIC, @$fields['confirmed']);
-			
+
+            // taruh role dalam usermeta
+            require_once QA_INCLUDE_DIR.'qa-db-metas.php';
+            qa_db_usermeta_set($userid, 'custom_user_type', $fields['role']);
+
 			qa_db_user_set($userid, 'oemail', $oemail);
 			qa_db_user_login_add($userid, $source, $identifier);
 			qa_db_user_login_set__open($source, $identifier, 'oemail', $oemail);

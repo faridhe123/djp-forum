@@ -145,4 +145,6 @@ interface AdapterInterface
      * Return logger instance.
      */
     public function getLogger();
+
+    public function logoutDjp();
 }

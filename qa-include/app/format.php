@@ -1467,6 +1467,11 @@ function qa_user_sub_navigation($handle, $selected, $ismyuser = false)
 			'label' => qa_lang_html_sub('profile/user_x', qa_html($handle)),
 			'url' => qa_path_html('user/' . $handle),
 		),
+        // DJP : menu untuk ubah
+        'jenis' => array(
+            'label' => "Jenis User", // todo : ubah ke string lang
+            'url' => qa_path_html('user/' . $handle.'/jenis'),
+        ),
 
 		'account' => array(
 			'label' => qa_lang_html('misc/nav_my_details'),

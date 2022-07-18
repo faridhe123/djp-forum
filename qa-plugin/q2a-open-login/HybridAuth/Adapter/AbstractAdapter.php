@@ -346,11 +346,15 @@ abstract class AbstractAdapter implements AdapterInterface
     {
         $error .= !empty($error) ? '. ' : '';
 
+         var_dump($this->httpClient->getResponseHttpCode());
+
+
         if ($this->httpClient->getResponseClientError()) {
             throw new HttpClientFailureException(
                 $error.'HTTP client error: '.$this->httpClient->getResponseClientError().'.'
             );
         }
+           
 
         // if validateApiResponseHttpCode is set to false, we by pass verification of http status code
         if (! $this->validateApiResponseHttpCode) {
@@ -365,5 +369,6 @@ abstract class AbstractAdapter implements AdapterInterface
                 '. Raw Provider API response: '.$this->httpClient->getResponseBody().'.'
             );
         }
+
     }
 }

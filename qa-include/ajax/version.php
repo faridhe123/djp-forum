@@ -26,7 +26,7 @@ if (qa_get_logged_in_level() < QA_USER_LEVEL_ADMIN) {
 	echo "QA_AJAX_RESPONSE\n0\n" . qa_lang_html('admin/no_privileges');
 	return;
 }
-
+session_write_close();
 $uri = qa_post_text('uri');
 $currentVersion = qa_post_text('version');
 $isCore = qa_post_text('isCore') === "true";

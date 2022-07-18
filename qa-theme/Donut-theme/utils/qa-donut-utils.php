@@ -219,7 +219,8 @@
 
     function donut_get_default_avatar( $size = 40 )
     {
-        return '<img src="' . donut_theme_url() . '/images/default-profile-pic.png" width="' . $size . '" height="' . $size . '" class="qa-avatar-image" alt="">';
+        // return '<img src="' . donut_theme_url() . '/images/default-profile-pic.png" width="' . $size . '" height="' . $size . '" class="qa-avatar-image" alt="">';
+        return '<span class="fa fa-user fa-3 text-muted"></span>';
     }
 
     /**
