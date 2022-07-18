@@ -428,7 +428,7 @@ function qa_page_routing()
         'logout' => 'pages/logout.php',
         'messages/' => 'pages/messages.php',
         'message/' => 'pages/message.php',
-        'questions/' => 'pages/questions.php',
+        'questions' => 'pages/questions.php',
         'register' => 'pages/register.php',
         'reset' => 'pages/reset.php',
         'search' => 'pages/search.php',

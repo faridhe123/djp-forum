@@ -206,7 +206,7 @@
             $this->body_prefix();
 
             $this->output( '<div class="container">' );
-            $this->output( '<div class="top-divider"></div>' );
+            // $this->output( '<div class="top-divider"></div>' );
             $this->output( '</div>' );
 
             $this->donut_site_header();
@@ -220,24 +220,24 @@
             $extratags = isset($this->content['wrapper_tags']) ? $this->content['wrapper_tags'] : '';
             $this->output( '<div class="qa-body-wrapper"' . $extratags . '>', '' );
 
-            $this->output( '<main class="donut-masthead">' );
+            // $this->output( '<main class="donut-masthead">' );
 
-            $this->output( '<div class="container">' );
-            $this->notices();
-            $this->output( '</div>' );
+            // $this->output( '<div class="container">' );
+            // $this->notices();
+            // $this->output( '</div>' );
 
-            $this->output( '<div class="container">' );
+            // $this->output( '<div class="container">' );
 
-            $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
+            // $extra_title_class = $this->donut_page_has_favorite() ? ' has-favorite' : '';
 
-            $this->output( '<div class="page-title' . $extra_title_class . '">' );
-            $this->page_title_error();
-            $this->output( '</div>' );
+            // $this->output( '<div class="page-title' . $extra_title_class . '">' );
+            // $this->page_title_error();
+            // $this->output( '</div>' );
 
-            $this->donut_breadcrumb();
-            $this->output( '</div>' );
+            // $this->donut_breadcrumb();
+            // $this->output( '</div>' );
 
-            $this->output( '</main>' );
+            // $this->output( '</main>' );
 
             $this->output( '<div class="container">', '' );
 
@@ -356,6 +356,48 @@
             $this->output( '<a href="' . $nav_item['url'] . '" class="list-group-item ' . $class . '">' . $icon . $nav_item['label'] . '</a>' );
         }
 
+        /**
+         * category item for the main
+         *
+         * @param  array $cat_item category item
+         *
+         * @return null
+         */
+        function nav_cat( $navtype, $level = null )
+        {
+            $navigation = @$this->content['navigation'][$navtype];
+
+            if ($navtype == 'user' || isset($navigation)) {
+                $this->output('<div class="qa-nav-' . $navtype . '">');
+
+                if ($navtype == 'user')
+                    $this->logged_in();
+
+                // reverse order of 'opposite' items since they float right
+                foreach (array_reverse($navigation, true) as $key => $navlink) {
+                    if (@$navlink['opposite']) {
+                        unset($navigation[$key]);
+                        $navigation[$key] = $navlink;
+                    }
+                }
+
+                $this->nav_list($navigation, 'nav-' . $navtype, $level);
+                $this->nav_clear($navtype);
+                $this->clear_context('nav_type');
+
+                $this->output('</div>');
+            }
+            
+        }
+
+        function subtitle( $subtitle )
+        {
+            $this->output('<h2 class="qa-subtitle">');
+            $this->output($subtitle);
+            // $this->page_title_error();
+            $this->output('</h2>');      
+        }
+
         function main()
         {
             $content = $this->content;
@@ -367,7 +409,7 @@
             if ( !empty( $this->content['navigation']['sub'] ) || $this->template == 'admin' ) {
                 $this->donut_sidebar_toggle_nav_btn();
             }
-
+            
             $this->widgets( 'main', 'top' );
 
             if ( !empty( $this->content['navigation']['sub'] ) || $this->template == 'admin' ) {
@@ -379,8 +421,20 @@
             }
 
             $this->widgets( 'main', 'high' );
-
-            $this->main_parts( $content );
+            if (isset($this->content['success']))
+			$this->success($this->content['success']);
+            if (isset($this->content['error']))
+			$this->error($this->content['error']);
+            if ($this->template == 'qa') {
+            $this->subtitle('Recent Questions');
+            // $this->nav_cat( 'cat', 1 );
+            // $this->output( "<h2>Pertanyaan Favorit</h2>" );
+            // $this->main_parts( $content );
+            // $this->output( "<h2>Pertanyaan Terbaru</h2>" );
+            $this->main_parts( $content ); 
+            } else {
+                $this->main_parts( $content );   
+            }
 
             $this->widgets( 'main', 'low' );
 
@@ -409,7 +463,7 @@
         }
 
         function sidepanel()
-        {
+        {   
             $this->output( '<div class="qa-sidepanel col-md-3 col-xs-12 pull-right">' );
             $this->output( '<div class="side-search-bar hidden-xs">' );
             $this->search();
@@ -523,7 +577,7 @@
             if ( qa_opt( 'donut_enable_top_bar' ) ) {
                 donut_include_template( 'top-header.php' );
             }
-
+            
             ?>
             <header id="nav-header">
                 <nav id="nav" class="navbar navbar-static-top"
@@ -551,6 +605,7 @@
                 </nav>
             </header>
             <?php
+            
             return ob_get_clean();
         }
 
@@ -1305,7 +1360,7 @@
 
         public function donut_site_header()
         {
-            if ( $this->is_home() && qa_opt( 'donut_show_home_page_banner' ) ) {
+            if ( ($this->is_home() || $this->template === 'qa') && qa_opt( 'donut_show_home_page_banner' ) ) {
                 //check if user closed the header intentionally
                 $user_hidden = qa_opt( 'donut_banner_closable' ) ?
                         @$_COOKIE['donut_hide_site_header'] : 'no';

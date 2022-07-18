@@ -15,6 +15,7 @@
         'send_us_an_email'            => 'Send us an email',
         'donut_theme'                 => 'Donut theme',
         'donut_discussion_forum'      => 'Donut discussion forum',
+        'donut_banner_link_text'      => 'Show More...',
         'search_answers'              => 'Search answers for all your queries',
         'one_destination'             => 'One destination for all your queries',
         'get_expert_answers'          => 'Get answers from the experts',
