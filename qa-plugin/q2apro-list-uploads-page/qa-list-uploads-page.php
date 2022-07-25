@@ -137,13 +137,13 @@
 				$imageSizeQuery = qa_db_query_sub("SELECT OCTET_LENGTH(content) FROM `^blobs` WHERE blobid='".$blobrow['blobid']."' LIMIT 1");
 				// $imgRow = qa_db_read_one_assoc($queryRecentUploads,true)
 				$theSize = mysqli_fetch_array($imageSizeQuery);
-				$imgSize = round($theSize[0]/1000, 1).' kB';
+				@$imgSize = round($theSize[0]/1000, 1).' kB';
 
 				// check if image is used in post content
 				$notFoundString = '<span style="color:#F00">&rarr; not found in posts &rarr; <a class="delImageLink" href="?delete='.$blobrow['blobid'].'">delete image?</a></span>';
 				$imageExistsQuery = qa_db_query_sub("SELECT postid,type,parentid FROM `^posts` WHERE `content` LIKE '%".$blobrow['blobid']."%' LIMIT 1");
 				$imageInPost = mysqli_fetch_array($imageExistsQuery);
-				$existsInPost = $imageInPost[0];
+				@$existsInPost = $imageInPost[0];
 				// $existsInPost = ($existsInPost=="") ? $notFoundString : "";
 
 				// set link to question, answer, comment that contains the image
@@ -173,7 +173,7 @@
 				// check if image is used as user avatar
 				$avImageExistsQuery = qa_db_query_sub("SELECT userid FROM `^users` WHERE `avatarblobid` LIKE '".$blobrow['blobid']."' LIMIT 1");
 				$imageAsAvatar = mysqli_fetch_array($avImageExistsQuery);
-				$existsAsAvatar = $imageAsAvatar[0];
+				@$existsAsAvatar = $imageAsAvatar[0];
 				if($existsInPost==$notFoundString && $existsAsAvatar!="") {
 					$existsInPost = "<span style='color:#00F'>&rarr; used as avatar image</span>";
 				}
@@ -181,7 +181,7 @@
 					// check if image is used as default avatar (within table qa_options, field avatar_default_blobid)
 					$avImageExistsQuery2 = qa_db_query_sub("SELECT title FROM `^options` WHERE `content` LIKE '".$blobrow['blobid']."' LIMIT 1");
 					$imageAsAvatar2 = mysqli_fetch_array($avImageExistsQuery2);
-					$existsAsAvatar = $imageAsAvatar2[0];
+					@$existsAsAvatar = $imageAsAvatar2[0];
 					if($existsInPost==$notFoundString && $existsAsAvatar!="") {
 						$existsInPost = "<span style='color:#07F'>&rarr; used as default avatar image</span>";
 					}
@@ -190,7 +190,7 @@
 				// check if image is used in custom pages
 				$pageImgExistsQuery = qa_db_query_sub(" SELECT tags FROM `^pages` WHERE `content` LIKE '%".$blobrow['blobid']."%' LIMIT 1");
 				$imageInPageResult = mysqli_fetch_array($pageImgExistsQuery);
-				$existsInPage = $imageInPageResult[0];
+				@$existsInPage = $imageInPageResult[0];
 				if($existsInPost==$notFoundString && $existsInPage!="") {
 					$existsInPost = "<span style='color:#09C;'>&rarr; used in custom page: '".$existsInPage."'</span>";
 				}
