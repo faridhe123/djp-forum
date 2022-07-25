@@ -101,8 +101,14 @@ function qa_user_level_string($level,$jenis=false)
             $string = 'users/jenis_wp';
         elseif ($level == QA_JENIS_USER_DJP)
             $string = 'users/jenis_pegawai';
-        elseif ($level == QA_JENIS_USER_PENGAWASAN)
+        elseif ($level == QA_JENIS_USER_AR)
             $string = 'users/jenis_ar';
+        elseif ($level == QA_JENIS_USER_KASI_PENGAWASAN_KPP)
+            $string = 'users/jenis_kasi_pengawasan_kpp';
+        elseif ($level == QA_JENIS_USER_KASI_PENGAWASAN_KANWIL)
+            $string = 'users/jenis_kasi_pengawasan_kanwil';
+        elseif ($level == QA_JENIS_USER_PENGAWASAN)
+            $string = 'users/jenis_pengawasan';
     }
 
     return qa_lang($string);

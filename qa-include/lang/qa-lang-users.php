@@ -139,5 +139,8 @@ return array(
     'jenis_wp' => 'Wajib Pajak',
     'jenis_pegawai' => 'Pegawai',
     'jenis_ar' => 'Account Representative',
+    'jenis_kasi_pengawasan_kpp' => 'Kepala Seksi Pengawasan KPP',
+    'jenis_kasi_pengawasan_kanwil' => 'Kepala Seksi Pengawasan Kanwil',
+    'jenis_pengawasan' => 'Pegawai Pengawasan',
 
 );

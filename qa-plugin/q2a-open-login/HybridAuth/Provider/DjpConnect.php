@@ -130,8 +130,13 @@ class DjpConnect extends OAuth2 {
         $userProfile->displayName = $profile['pegawai']['nama'];
 
         // Custom User Data
-        $roles = array();
-        if(in_array('ROLE_PENGAWASAN',$profile['roles']))
+        if(in_array('ROLE_DJPFORUM_AR',$profile['roles']))
+            $userProfile->role = QA_JENIS_USER_AR;
+        elseif(in_array('ROLE_DJPFORUM_KASI_PENGAWASAN_KPP',$profile['roles']))
+            $userProfile->role = QA_JENIS_USER_KASI_PENGAWASAN_KPP;
+        elseif(in_array('ROLE_DJPFORUM_KASI_PENGAWASAN_KANWIL',$profile['roles']))
+            $userProfile->role = QA_JENIS_USER_KASI_PENGAWASAN_KANWIL;
+        elseif(in_array('ROLE_DJPFORUM_PEGAWAI_PENGAWASAN',$profile['roles']))
             $userProfile->role = QA_JENIS_USER_PENGAWASAN;
         else
             $userProfile->role = QA_JENIS_USER_DJP;

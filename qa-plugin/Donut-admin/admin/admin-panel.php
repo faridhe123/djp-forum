@@ -5,6 +5,8 @@
     }
 
     require_once QA_INCLUDE_DIR . '/app/admin.php';
+require_once QA_INCLUDE_DIR . '/app/upload.php';
+
     $adminsection = strtolower( qa_request_part( 2 ) );
 
     //	Get list of categories and all options
@@ -179,8 +181,13 @@
                 if ( isset( $optionminimum[$optionname] ) )
                     $optionvalue = max( $optionminimum[$optionname], $optionvalue );
 
-                if (@$optiontype[$optionname] == 'file') {
-//                        echo $optionvalue = var_dump($_FILES['option_donut_banner_div1_img']);die();
+                if (@$optiontype[$optionname] == 'file' && !empty($_FILES['option_'.$optionname]['tmp_name'])) {
+                    // M<ulai upload dan buat blob
+                    $test = qa_upload_file($_FILES['option_'.$optionname]['tmp_name'], $_FILES['option_'.$optionname]['name']);
+                    $optionvalue = $test['bloburl'];
+                }elseif (@$optiontype[$optionname] == 'file' && empty($_FILES['option_'.$optionname]['tmp_name'])) {
+                    // M<ulai upload dan buat blob
+                    $optionvalue = donut_default_option( $optionname );
                 };
 
                 qa_set_option( $optionname, $optionvalue );
