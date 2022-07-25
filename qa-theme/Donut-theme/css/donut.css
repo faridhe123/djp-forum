@@ -2731,7 +2731,7 @@ header#nav-header{
   float: right;
   position: absolute;
   right: 0;
-  bottom: 5px;
+  /*bottom: 5px;*/
   margin-bottom: 40px;
 }
 .qa-favoriting .qa-waiting {
