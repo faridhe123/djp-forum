@@ -71,8 +71,8 @@
 			else {
 				// get userid
 				$useridRowQuery = qa_db_query_sub("SELECT userid FROM ^users WHERE handle = '".$gotUserName."' LIMIT 1");
-				$theUserData = mysql_fetch_array($useridRowQuery);
-				if(!is_null($theUserData[0])) {				
+				$theUserData = mysqli_fetch_array($useridRowQuery);
+				if(!is_null($theUserData[0])) {
 					$userid_toQuery = "AND userid = ".$theUserData[0];
 				}
 				else {
@@ -80,13 +80,13 @@
 					$usernameNotExists = true; // to inform admin
 				}
 			}
-			
-			
+
+
 			/* start content */
 			$qa_content = qa_content_prepare();
 
 			// page title
-			$qa_content['title'] = $deleteAll ? "Images have been deleted" : qa_lang_html('qa_list_uploads_lang/page_title') . " ".$lastdays." ".qa_lang_html('qa_list_uploads_lang/page_days'); 
+			$qa_content['title'] = $deleteAll ? "Images have been deleted" : qa_lang_html('qa_list_uploads_lang/page_title') . " ".$lastdays." ".qa_lang_html('qa_list_uploads_lang/page_days');
 
 			// return if not admin!
 			$level=qa_get_logged_in_level();
@@ -94,7 +94,7 @@
 				$qa_content['custom0']='<div>'.qa_lang_html('qa_list_uploads_lang/not_allowed').'</div>';
 				return $qa_content;
 			}
-			
+
 			// delete button was hit by admin
 			$deleteBlobId = qa_get("delete");
 			if(!is_null($deleteBlobId)) {
@@ -104,7 +104,7 @@
 				$qa_content['custom1']='<p style="font-size:15px;"><a href="./listuploads">&raquo; '.qa_lang_html('qa_list_uploads_lang/nav_back_list').'</a> | <a href="./listuploads?remove=1">&raquo; '.qa_lang_html('qa_list_uploads_lang/nav_back_removelist').'</a></p>';
 				return $qa_content;
 			}
-			
+
 			// inform admin if username passed by URL does not exist
 			if($usernameNotExists) {
 				$qa_content['custom0']='<div>'.qa_lang_html('qa_list_uploads_lang/user_not_existing').'</div>';
@@ -113,39 +113,39 @@
 
 			// required for qa_get_blob_url()
 			require_once QA_INCLUDE_DIR.'qa-app-blobs.php';
-			
+
 			// query blobs of last x days
 			$queryRecentUploads = qa_db_query_sub("SELECT blobid,format,userid,created,filename
 											FROM `^blobs`
-											WHERE created > NOW() - INTERVAL ".$lastdays." DAY " 
+											WHERE created > NOW() - INTERVAL ".$lastdays." DAY "
 											. $userid_toQuery .
 											" ORDER BY created DESC;"); // LIMIT 0,100
-											
+
 			// counter for custom html output
 			$c = 2;
 			$imgCount = 1;
 			$imgDelCount = 1;
-			
+
 			// initiate output string
 			$listAllUploads = "<table> <thead><tr><th>&nbsp;</th><th class='column1'>".qa_lang_html('qa_list_uploads_lang/upload_date')."</th>  <th class='column1'>".qa_lang_html('qa_list_uploads_lang/media_item')."</th> <th>Size</th> <th class='column2'>".qa_lang_html('qa_list_uploads_lang/upload_by_user')."</th> </tr></thead>";
 			$d = 0;
 			while ( ($blobrow = qa_db_read_one_assoc($queryRecentUploads,true)) !== null ) {
 				$currentUser = $blobrow['userid'];
 				$userrow = qa_db_select_with_pending( qa_db_user_account_selectspec($currentUser, true) );
-				
+
 				// get size of image
 				$imageSizeQuery = qa_db_query_sub("SELECT OCTET_LENGTH(content) FROM `^blobs` WHERE blobid='".$blobrow['blobid']."' LIMIT 1");
 				// $imgRow = qa_db_read_one_assoc($queryRecentUploads,true)
-				$theSize = mysql_fetch_array($imageSizeQuery);
+				$theSize = mysqli_fetch_array($imageSizeQuery);
 				$imgSize = round($theSize[0]/1000, 1).' kB';
-				
+
 				// check if image is used in post content
 				$notFoundString = '<span style="color:#F00">&rarr; not found in posts &rarr; <a class="delImageLink" href="?delete='.$blobrow['blobid'].'">delete image?</a></span>';
 				$imageExistsQuery = qa_db_query_sub("SELECT postid,type,parentid FROM `^posts` WHERE `content` LIKE '%".$blobrow['blobid']."%' LIMIT 1");
-				$imageInPost = mysql_fetch_array($imageExistsQuery);
+				$imageInPost = mysqli_fetch_array($imageExistsQuery);
 				$existsInPost = $imageInPost[0];
 				// $existsInPost = ($existsInPost=="") ? $notFoundString : "";
-				
+
 				// set link to question, answer, comment that contains the image
 				if($existsInPost=="") {
 					$existsInPost = $notFoundString;
@@ -155,7 +155,7 @@
 				}
 				else if($imageInPost[1]=="C") {
 					// get question link from answer
-					$getQlink = mysql_fetch_array( qa_db_query_sub("SELECT parentid,type FROM `^posts` WHERE `postid` = ".$imageInPost[2]." LIMIT 1") );
+					$getQlink = mysqli_fetch_array( qa_db_query_sub("SELECT parentid,type FROM `^posts` WHERE `postid` = ".$imageInPost[2]." LIMIT 1") );
 					$linkToQuestion = $getQlink[0];
 					if($getQlink[1]=="A") {
 						$existsInPost = "<a href='".$linkToQuestion."?show=".$imageInPost[0]."#c".$imageInPost[0]."' style='margin-left:10px;font-size:11px;'>&rarr; in comment: ".$existsInPost."</a>";
@@ -172,7 +172,7 @@
 
 				// check if image is used as user avatar
 				$avImageExistsQuery = qa_db_query_sub("SELECT userid FROM `^users` WHERE `avatarblobid` LIKE '".$blobrow['blobid']."' LIMIT 1");
-				$imageAsAvatar = mysql_fetch_array($avImageExistsQuery);
+				$imageAsAvatar = mysqli_fetch_array($avImageExistsQuery);
 				$existsAsAvatar = $imageAsAvatar[0];
 				if($existsInPost==$notFoundString && $existsAsAvatar!="") {
 					$existsInPost = "<span style='color:#00F'>&rarr; used as avatar image</span>";
@@ -180,16 +180,16 @@
 				else {
 					// check if image is used as default avatar (within table qa_options, field avatar_default_blobid)
 					$avImageExistsQuery2 = qa_db_query_sub("SELECT title FROM `^options` WHERE `content` LIKE '".$blobrow['blobid']."' LIMIT 1");
-					$imageAsAvatar2 = mysql_fetch_array($avImageExistsQuery2);
+					$imageAsAvatar2 = mysqli_fetch_array($avImageExistsQuery2);
 					$existsAsAvatar = $imageAsAvatar2[0];
 					if($existsInPost==$notFoundString && $existsAsAvatar!="") {
 						$existsInPost = "<span style='color:#07F'>&rarr; used as default avatar image</span>";
 					}
 				}
-				
+
 				// check if image is used in custom pages
 				$pageImgExistsQuery = qa_db_query_sub(" SELECT tags FROM `^pages` WHERE `content` LIKE '%".$blobrow['blobid']."%' LIMIT 1");
-				$imageInPageResult = mysql_fetch_array($pageImgExistsQuery);
+				$imageInPageResult = mysqli_fetch_array($pageImgExistsQuery);
 				$existsInPage = $imageInPageResult[0];
 				if($existsInPost==$notFoundString && $existsInPage!="") {
 					$existsInPost = "<span style='color:#09C;'>&rarr; used in custom page: '".$existsInPage."'</span>";
