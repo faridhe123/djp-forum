@@ -50,13 +50,13 @@
         'donut_banner_head_text'             => 'text',
         'donut_banner_div1_text'             => 'text',
         'donut_banner_div1_link'             => 'text',
-        'donut_banner_div1_img'              => 'text',
+        'donut_banner_div1_img'              => 'file',
         'donut_banner_div2_text'             => 'text',
         'donut_banner_div2_link'             => 'text',
-        'donut_banner_div2_img'              => 'text',
+        'donut_banner_div2_img'              => 'file',
         'donut_banner_div3_text'             => 'text',
         'donut_banner_div3_link'             => 'text',
-        'donut_banner_div3_img'              => 'text',
+        'donut_banner_div3_img'              => 'file',
         'donut_top_bar_left_text'            => 'text',
         'donut_top_bar_right_text'           => 'text',
         'donut_facebook_url'                 => 'text',
@@ -158,7 +158,7 @@
             donut_reset_options( $getoptions );
             $formokhtml = donut_lang_html( 'options_reset' );
         }
-    } elseif ( qa_clicked( 'dosaveoptions' ) ) {
+    } elseif ( qa_clicked( 'dosaveoptions' ) ) {  //TODO : Jika klik save, belum ada perubahan backend
         if ( !qa_check_form_security_code( 'admin/' . $adminsection, qa_post_text( 'code' ) ) )
             $securityexpired = true;
 
@@ -178,6 +178,10 @@
 
                 if ( isset( $optionminimum[$optionname] ) )
                     $optionvalue = max( $optionminimum[$optionname], $optionvalue );
+
+                if (@$optiontype[$optionname] == 'file') {
+//                        echo $optionvalue = var_dump($_FILES['option_donut_banner_div1_img']);die();
+                };
 
                 qa_set_option( $optionname, $optionvalue );
             }
@@ -203,7 +207,7 @@
     $qa_content['form'] = array(
         'ok'      => $formokhtml,
 
-        'tags'    => 'method="post" action="' . qa_self_html() . '" name="admin_form" onsubmit="document.forms.admin_form.has_js.value=1; return true;"',
+        'tags'    => 'enctype="multipart/form-data" method="post" action="' . qa_self_html() . '" name="admin_form" onsubmit="document.forms.admin_form.has_js.value=1; return true;"',
 
         'style'   => $formstyle,
 

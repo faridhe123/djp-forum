@@ -158,7 +158,9 @@ class p2c_category_permission
         $user_type = $this->user_type(qa_get_logged_in_userid());
 
         $categories = qa_db_select_with_pending(qa_db_full_category_selectspec($categoryid, true));
-        $parent = $categories['parentid'];
+
+        // Question bisa dibuat tanpa kategori
+        $parent = @$categories['parentid'];
 
         if ( qa_get_logged_in_level() >= $permit_level || $permit_level == 0 ){
             if ( in_array($user_type, $permit_jenis) || $permit_jenis == array() )
