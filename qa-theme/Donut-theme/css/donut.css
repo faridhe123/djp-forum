@@ -1800,8 +1800,9 @@ header#nav-header{
   box-shadow: none;
   outline: none;
   /*background-color: #212c5f;*/
-  background-color: #ffb822;
-  color: #fff;
+  /*background-color: #ffb822;*/
+  /*color: #fff;*/
+  color: #02275d;
   /*padding: 10px 12px;*/
   padding: 10px 12px 9px;
   z-index: 1000 !important;
@@ -1814,9 +1815,10 @@ header#nav-header{
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  color: #fff;
+  /*color: #fff;*/
+  color: #02275d;
   /*background-color: #286090;*/
-  background-color: #fbaa00;
+  /*background-color: #fbaa00;*/
 }
 .qa-search-field.form-control {
   border-radius: 4px;
