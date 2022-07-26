@@ -2189,8 +2189,8 @@ header#nav-header{
   padding:0px;
 
   /*position: -webkit-sticky; !* Safari *!*/
-  position: sticky;
-  top: 90px;
+  /*position: sticky;*/
+  /*top: 90px;*/
 }
 
 .qa-sidepanel > div:last-child {
