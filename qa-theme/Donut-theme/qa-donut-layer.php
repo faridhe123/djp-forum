@@ -392,7 +392,7 @@
 
         function subtitle( $subtitle )
         {
-            $this->output('<h2 class="qa-subtitle">');
+            $this->output('<h4 class="qa-subtitle">');
             $this->output($subtitle);
             // $this->page_title_error();
             $this->output('</h2>');      
@@ -1490,50 +1490,53 @@
 
         //MY CUSTOM  qa-theme-base.php REPLACE
         // TODO : buat custom "nav list"
-        public function nav($navtype, $level = null)
-        {
-            $navigation = @$this->content['navigation'][$navtype];
 
-            if ($navtype == 'user' || isset($navigation)) {
-                $this->output('<div class="qa-nav-' . $navtype . '">');
+        /* Tidak ada perubahan */
+//        public function nav($navtype, $level = null)
+//        {
+//            $navigation = @$this->content['navigation'][$navtype];
+//
+//            if ($navtype == 'user' || isset($navigation)) {
+//                $this->output('<div class="qa-nav-' . $navtype . '">');
+//
+//                if ($navtype == 'user')
+//                    $this->logged_in();
+//
+//                // reverse order of 'opposite' items since they float right
+//                foreach (array_reverse($navigation, true) as $key => $navlink) {
+//                    if (@$navlink['opposite']) {
+//                        unset($navigation[$key]);
+//                        $navigation[$key] = $navlink;
+//                    }
+//                }
+//
+//                $this->set_context('nav_type', $navtype);
+//                $this->nav_list($navigation, 'nav-' . $navtype, $level);
+//                $this->nav_clear($navtype);
+//                $this->clear_context('nav_type');
+//
+//                $this->output('</div>');
+//            }
+//        }
 
-                if ($navtype == 'user')
-                    $this->logged_in();
-
-                // reverse order of 'opposite' items since they float right
-                foreach (array_reverse($navigation, true) as $key => $navlink) {
-                    if (@$navlink['opposite']) {
-                        unset($navigation[$key]);
-                        $navigation[$key] = $navlink;
-                    }
-                }
-
-                $this->set_context('nav_type', $navtype);
-                $this->nav_list($navigation, 'nav-' . $navtype, $level);
-                $this->nav_clear($navtype);
-                $this->clear_context('nav_type');
-
-                $this->output('</div>');
-            }
-        }
-
-        public function nav_list($navigation, $class, $level = null)
-        {
-            $this->output('<ul class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
-
-            $index = 0;
-
-            foreach ($navigation as $key => $navlink) {
-                $this->set_context('nav_key', $key);
-                $this->set_context('nav_index', $index++);
-                $this->nav_item($key, $navlink, $class, $level);
-            }
-
-            $this->clear_context('nav_key');
-            $this->clear_context('nav_index');
-
-            $this->output('</ul>');
-        }
+        /* Tidak ada perubahan */
+//        public function nav_list($navigation, $class, $level = null)
+//        {
+//            $this->output('<ul class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
+//
+//            $index = 0;
+//
+//            foreach ($navigation as $key => $navlink) {
+//                $this->set_context('nav_key', $key);
+//                $this->set_context('nav_index', $index++);
+//                $this->nav_item($key, $navlink, $class, $level);
+//            }
+//
+//            $this->clear_context('nav_key');
+//            $this->clear_context('nav_index');
+//
+//            $this->output('</ul>');
+//        }
 
         public function nav_item($key, $navlink, $class, $level = null)
         {

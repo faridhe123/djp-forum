@@ -87,7 +87,10 @@ if (!QA_FINAL_EXTERNAL_USERS) {
 
     if($jenisuser == '1') $role = 'ROLE_USER_NON_DJP';
     elseif($jenisuser == '2') $role = 'ROLE_USER_DJP';
-    elseif($jenisuser == '3') $role = 'ROLE_PENGAWAS';
+    elseif($jenisuser == '3') $role = 'ROLE_AR';
+    elseif($jenisuser == '4') $role = 'ROLE_KASI_PENGAWASAN_KPP';
+    elseif($jenisuser == '5') $role = 'ROLE_KASI_PENGAWASAN_KANWIL';
+    elseif($jenisuser == '6') $role = 'ROLE_PEGAWAI_PENGAWASAN';
 
 	$qa_content['form_profile'] = array(
 		'tags' => 'method="post" action="' . qa_self_html() . '"',
