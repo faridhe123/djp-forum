@@ -1488,6 +1488,107 @@
             return $original;
         }
 
+        //MY CUSTOM  qa-theme-base.php REPLACE
+        // TODO : buat custom "nav list"
+        public function nav($navtype, $level = null)
+        {
+            $navigation = @$this->content['navigation'][$navtype];
+
+            if ($navtype == 'user' || isset($navigation)) {
+                $this->output('<div class="qa-nav-' . $navtype . '">');
+
+                if ($navtype == 'user')
+                    $this->logged_in();
+
+                // reverse order of 'opposite' items since they float right
+                foreach (array_reverse($navigation, true) as $key => $navlink) {
+                    if (@$navlink['opposite']) {
+                        unset($navigation[$key]);
+                        $navigation[$key] = $navlink;
+                    }
+                }
+
+                $this->set_context('nav_type', $navtype);
+                $this->nav_list($navigation, 'nav-' . $navtype, $level);
+                $this->nav_clear($navtype);
+                $this->clear_context('nav_type');
+
+                $this->output('</div>');
+            }
+        }
+
+        public function nav_list($navigation, $class, $level = null)
+        {
+            $this->output('<ul class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
+
+            $index = 0;
+
+            foreach ($navigation as $key => $navlink) {
+                $this->set_context('nav_key', $key);
+                $this->set_context('nav_index', $index++);
+                $this->nav_item($key, $navlink, $class, $level);
+            }
+
+            $this->clear_context('nav_key');
+            $this->clear_context('nav_index');
+
+            $this->output('</ul>');
+        }
+
+        public function nav_item($key, $navlink, $class, $level = null)
+        {
+            $suffix = strtr($key, array( // map special character in navigation key
+                '$' => '',
+                '/' => '-',
+            ));
+
+            $this->output('<li class="qa-' . $class . '-item' . (@$navlink['opposite'] ? '-opp' : '') .
+                (@$navlink['state'] ? (' qa-' . $class . '-' . $navlink['state']) : '') . ' qa-' . $class . '-' . $suffix . '">');
+            $this->nav_link($navlink, $class);
+
+            $subnav = isset($navlink['subnav']) ? $navlink['subnav'] : array();
+            if (is_array($subnav) && count($subnav) > 0) {
+                $this->nav_list($subnav, $class, 1 + $level);
+            }
+
+            $this->output('</li>');
+        }
+
+        public function nav_link($navlink, $class)
+        {
+            // Buat jadi 2 kolom pakai div row
+            $this->output("<div class='row center-item'>");
+
+            if (strlen(@$navlink['note']))
+                $this->output(
+                    '<div class="col-md-2">'.
+                        '<span class="align-middle qa-' . $class . '-note">' . $navlink['note'] . '</span>'.
+                    '</div>');
+
+            if (isset($navlink['url'])) {
+                $this->output(
+                    '<div class="col-md-10">'.
+                        '<a href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
+                        (@$navlink['selected'] ? (' qa-' . $class . '-selected') : '') .
+                        (@$navlink['favorited'] ? (' qa-' . $class . '-favorited') : '') .
+                        '"' . (strlen(@$navlink['popup']) ? (' title="' . $navlink['popup'] . '"') : '') .
+                        (isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') . '>' . $navlink['label'] .
+                        '</a>'.
+                    '</div>'
+                );
+            } else {
+                $this->output(
+                    '<span class="qa-' . $class . '-nolink' . (@$navlink['selected'] ? (' qa-' . $class . '-selected') : '') .
+                    (@$navlink['favorited'] ? (' qa-' . $class . '-favorited') : '') . '"' .
+                    (strlen(@$navlink['popup']) ? (' title="' . $navlink['popup'] . '"') : '') .
+                    '>' . $navlink['label'] . '</span>'
+                );
+            }
+
+            // Tutup row
+            $this->output("</div>");
+        }
+
     }
 /*
 	Omit PHP closing tag to help avoid accidental output
