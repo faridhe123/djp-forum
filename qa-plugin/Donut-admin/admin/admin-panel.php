@@ -247,7 +247,7 @@ require_once QA_INCLUDE_DIR . '/app/upload.php';
     }
 
     $indented = false;
-
+$x = 1;
     foreach ( $showoptions as $optionname )
         // TODO : Jika jenis file (Slider 1 2 3)
         if ( @$optiontype[$optionname] == 'file' ) {
@@ -260,14 +260,20 @@ require_once QA_INCLUDE_DIR . '/app/upload.php';
 
                 $rasio = number_format($image_height/$image_width*10,0);
 
-                $qa_content['form']['fields'][] = array(
+                $qa_content['form']['fields']['gambar_'.$x] = array(
                     'type'  => 'image',
                     'label' => ( $indented ? '&ndash; ' : '' ) . donut_options_lang( $optionname ),
                     'html' => "<img src='".qa_opt( $optionname )."' width='150'/>",
-                    'note' => $image_width.' x '.$image_height . ' ( 10 : '.
-                        '<span style="font-weight:bolder;color:'.($rasio != 3 ? 'red' : '').'">'.$rasio.'</span>.'
-                        .' )'
+                    'note' => '<br>'.$image_width.' x '.$image_height . ' ( 10 : '.
+                        $rasio.' )'
                 );
+
+                if($rasio != 3)
+                    $qa_content['form']['fields']['gambar_'.$x]['error'] = "<span style='color:red;font-weight: 300'>".$image_width.' x '.$image_height . ' ( 10 : '.
+                        $rasio."</span>"
+                        .' )';
+
+                $x++;
             } else {
                 // jika belum ada gambar ditambahkan
                 $qa_content['form']['fields'][] = array(
@@ -288,7 +294,7 @@ require_once QA_INCLUDE_DIR . '/app/upload.php';
                 'tags'  => 'name="option_' . $optionname . '" id="option_' . $optionname . '"',
                 'value' => qa_html( $value ),
                 'type'  => $type,
-                'error' => qa_html( @$errors[$optionname] ),
+//                'error' => "ERROR",
                 'note' => "
                         <ul>
                             <li>Pastikan untuk meng-upload gambar dengan rasio 10:3 agar tidak ada gambar yang terpotong</li> 
@@ -296,38 +302,6 @@ require_once QA_INCLUDE_DIR . '/app/upload.php';
                         </ul>
                         "
             );
-
-            if ( isset( $optionmaximum[$optionname] ) )
-                $optionfield['note'] = qa_lang_html_sub( 'admin/maximum_x', $optionmaximum[$optionname] );
-
-            $feedrequest = null;
-            $feedisexample = false;
-
-            switch ( $optionname ) { // special treatment for certain options
-
-                case 'special_opt': //not using for now
-                    $optionfield['note'] = donut_options_lang_html( $optionname . '_note' );
-                    break;
-
-            }
-
-            switch ( $optionname ) {
-                case 'donut_activate_prod_mode':
-                case 'donut_use_local_font':
-                case 'donut_top_bar_left_text':
-                case 'donut_top_bar_right_text':
-                case 'donut_enable_top_bar':
-                case 'donut_enable_sticky_header':
-                case 'donut_enable_back_to_top_btn':
-                case 'donut_show_home_page_banner':
-                case 'donut_show_breadcrumbs':
-                case 'donut_show_site_stats_above_footer':
-                case 'donut_show_social_links_at_footer':
-                case 'donut_show_copyright_at_footer':
-                case 'donut_show_custom_404_page':
-                    $optionfield['style'] = 'tall';
-                    break;
-            }
 
             $qa_content['form']['fields'][$optionname] = $optionfield;
         }elseif ( empty( $optionname ) ) {
