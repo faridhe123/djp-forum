@@ -1544,7 +1544,12 @@
 
             $this->output('<li class="qa-' . $class . '-item' . (@$navlink['opposite'] ? '-opp' : '') .
                 (@$navlink['state'] ? (' qa-' . $class . '-' . $navlink['state']) : '') . ' qa-' . $class . '-' . $suffix . '">');
-            $this->nav_link($navlink, $class);
+
+            // Ada 2 jenis nav : Sub dan Category ...
+            if(isset($navlink['categoryid']))
+                $this->my_nav_link($navlink, $class);
+            else
+                $this->nav_link($navlink, $class);
 
             $subnav = isset($navlink['subnav']) ? $navlink['subnav'] : array();
             if (is_array($subnav) && count($subnav) > 0) {
@@ -1554,7 +1559,7 @@
             $this->output('</li>');
         }
 
-        public function nav_link($navlink, $class)
+        public function my_nav_link($navlink, $class)
         {
             // Buat jadi 2 kolom pakai div row
             $this->output("<div class='row center-item'>");
