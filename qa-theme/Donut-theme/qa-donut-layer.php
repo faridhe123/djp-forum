@@ -27,6 +27,9 @@
                     '<meta http-equiv="content-type" content="' . $this->content['content_type'] . '"/>'
             );
 
+            // custom Forum Favicon
+            $this->donut_favicon();
+
             $this->donut_default_meta();
             $this->head_title();
             $this->head_metas();
@@ -468,6 +471,9 @@
             $this->output( '<div class="side-search-bar hidden-xs">' );
             $this->search();
             $this->output( '</div>' );
+            // tambah tombol new Question
+            $this->ask_button();
+
             $this->widgets( 'side', 'top' );
             $this->sidebar();
             $this->widgets( 'side', 'high' );
@@ -1053,7 +1059,7 @@
          */
         function donut_favicon()
         {
-            $this->output_raw( '<link rel="shortcut icon" href="favicon.ico">' );
+            $this->output_raw( '<link rel="shortcut icon" href="favicon.png">' );
         }
 
         function ranking( $ranking )
@@ -1570,7 +1576,7 @@
             if (strlen(@$navlink['note']))
                 $this->output(
                     '<div class="col-md-2">'.
-                        '<span class="align-middle qa-' . $class . '-note">' . $navlink['note'] . '</span>'.
+                        '<span class="align-middle qa-' . $class . '-note" title="'.$navlink['note'].' question">' . $navlink['note'] . '</span>'.
                     '</div>');
 
             if (isset($navlink['url'])) {
@@ -1596,6 +1602,39 @@
             // Tutup row
             $this->output("</div>");
         }
+
+        public function ask_button() {
+
+//            var_dump($this->content);die();
+            if($this->content['script_var']['qa_request'] !== 'ask') {
+                $this->output('
+                    <div class="row">
+                        <a href="' . qa_path_html('ask', strlen(@$this->content['categoryids'][0]) ? array('cat' => @$this->content['categoryids'][0]) : null) . '" type="button" class="center-item center-block btn btn-info button-ask-question" >
+                                 <span class="col-md-2"><i class="fa fa-plus"> </i></span>
+                                 <span class="col-md-10 center-item"> Ajukan Pertanyaan' . (strlen(@$this->content['categoryids'][0]) ? "<br>Kategori Ini" : "") . '</span>
+                          <!--<span class="caret"></span>-->
+                        </a>
+                     </div>
+                ');
+            } else {
+                $this->output("
+                <div></div>
+                ");
+            }
+        }
+
+    public function sidebar()
+    {
+        $sidebar = @$this->content['sidebar'];
+
+        if($this->content['script_var']['qa_request'] == 'ask') {
+            if (!empty($sidebar)) {
+                $this->output('<div class="qa-sidebar">');
+                $this->output_raw($sidebar);
+                $this->output('</div>', '');
+            }
+        }
+    }
 
     }
 /*

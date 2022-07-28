@@ -4181,5 +4181,23 @@ a.qa-browse-cat-link:visited {
   align-items: center;
 }
 
+.button-ask-question {
+  /*margin :10px;*/
+  margin-top : 20px;
+  margin-bottom : 20px;
+  background: #02275d;
+  border: 0px;
+  /*font-weight: bold;*/
+  width : 70%;
+  height: 50px;
+}
+
+.button-ask-question:hover {
+  background: #062b62;
+}
+.button-ask-question:active {
+  background: #062b62;
+}
+
 
 /* CUSTOM END */

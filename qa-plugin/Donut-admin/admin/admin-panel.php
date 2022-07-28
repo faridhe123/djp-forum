@@ -265,13 +265,20 @@ $x = 1;
                     'label' => ( $indented ? '&ndash; ' : '' ) . donut_options_lang( $optionname ),
                     'html' => "<img src='".qa_opt( $optionname )."' width='150'/>",
                     'note' => '<br>'.$image_width.' x '.$image_height . ' ( 10 : '.
-                        $rasio.' )'
+                        $rasio.' ) <br><small> Size : '.
+                            (strlen( file_get_contents(qa_opt( $optionname )) ) > 1024*1024 ?
+                                round((strlen( file_get_contents(qa_opt( $optionname )) ) / 1024 / 1024),2) ." MB":
+                                round((strlen(file_get_contents(qa_opt( $optionname )) ) / 1024),2)." KB") . "</small>"
                 );
 
                 if($rasio != 3)
                     $qa_content['form']['fields']['gambar_'.$x]['error'] = "<span style='color:red;font-weight: 300'>".$image_width.' x '.$image_height . ' ( 10 : '.
-                        $rasio."</span>"
-                        .' )';
+                        $rasio.' ) <br><small> Size : '.
+                        (strlen( file_get_contents(qa_opt( $optionname )) ) > 1024*1024 ?
+                            round((strlen( file_get_contents(qa_opt( $optionname )) ) / 1024 / 1024),2) ." MB":
+                            round((strlen(file_get_contents(qa_opt( $optionname )) ) / 1024),2)." KB")
+                            ."</span></small>"
+                        ;
 
                 $x++;
             } else {
@@ -297,7 +304,7 @@ $x = 1;
 //                'error' => "ERROR",
                 'note' => "
                         <ul>
-                            <li>Pastikan untuk meng-upload gambar dengan rasio 10:3 agar tidak ada gambar yang terpotong</li> 
+                            <li><small>Upload gambar dengan rasio 10:3 agar gambar tidak terpotong</small></li> 
                             <li>Contoh : 1366 x 405 , 1920 x 569 ,</li> 
                         </ul>
                         "

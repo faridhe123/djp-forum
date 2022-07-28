@@ -8,36 +8,20 @@
     </ol>
         
     <div class="carousel-inner">
-    
+
+        <?php for($x=1;$x<=3;$x++) {?>
         <!-- slide 1 -->
-        <div class="item active">
-            <img src="<?php echo qa_opt( 'donut_banner_div1_img' ) ?>" alt="Demo 1"/>
+        <div class="item <?php echo $x == 1 ? 'active' : ''?>">
+            <img src="<?php echo qa_opt( 'donut_banner_div'.$x.'_img' ) ?>" alt="Demo 1"/>
             <!-- caption -->
-            <div class="carousel-caption">
-                <h2><?php echo qa_opt( 'donut_banner_div1_text' ) ?></h2>
-                <a href='<?php echo qa_opt( 'donut_banner_div1_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
-            </div>
+            <a href='<?php echo qa_opt( 'donut_banner_div'.$x.'_link' ) ?>'>
+                <div class="carousel-caption">
+                    <h2><?php echo qa_opt( 'donut_banner_div'.$x.'_text' ) ?></h2>
+                    <?php echo donut_lang( 'donut_banner_link_text' ) ?>
+                </div>
+            </a>
         </div>
-        
-        <!-- slide 2 -->
-        <div class="item">
-            <img src="<?php echo qa_opt( 'donut_banner_div2_img' ) ?>" alt="Demo 2"/>
-            <!-- caption -->
-            <div class="carousel-caption">
-                <h2><?php echo qa_opt( 'donut_banner_div2_text' ) ?></h2>
-                <a href='<?php echo qa_opt( 'donut_banner_div2_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
-            </div>
-        </div>
-        
-        <!-- slide 3 -->
-        <div class="item">
-            <img src="<?php echo qa_opt( 'donut_banner_div3_img' ) ?>" alt="Demo 3"/>
-            <!-- caption -->
-            <div class="carousel-caption">
-                <h2><?php echo qa_opt( 'donut_banner_div3_text' ) ?></h2>
-                <a href='<?php echo qa_opt( 'donut_banner_div3_link' ) ?>'><?php echo donut_lang( 'donut_banner_link_text' ) ?></a>
-            </div>
-        </div>
+        <?php } ?>
         
     </div>
     
