@@ -62,7 +62,7 @@
                     </div>
                 </li>
             <?php endif ?>
-            <?php if (!defined( 'QA_WORDPRESS_INTEGRATE_PATH' ) and false): // Hilangkan "and false" jika mau buka login ?>
+            <?php if (!defined( 'QA_WORDPRESS_INTEGRATE_PATH' ) /*and false*/): // Hilangkan "and false" jika mau buka login ?>
                 <form role="form" action="<?php echo $this->content['navigation']['user']['login']['url']; ?>"
                       method="post">
                     <li>

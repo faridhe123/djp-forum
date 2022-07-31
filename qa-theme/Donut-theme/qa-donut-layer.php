@@ -1555,7 +1555,8 @@
                 (@$navlink['state'] ? (' qa-' . $class . '-' . $navlink['state']) : '') . ' qa-' . $class . '-' . $suffix . '">');
 
             // Ada 2 jenis nav : Sub dan Category ...
-            if(isset($navlink['categoryid']))
+            // Ada juga page Categories
+            if(isset($navlink['categoryid']) && explode('/',$this->content['script_var']['qa_request'])[0] !== 'categories')
                 $this->my_nav_link($navlink, $class);
             else
                 $this->nav_link($navlink, $class);
